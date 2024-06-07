@@ -9,20 +9,22 @@ const client = new DynamoDBClient({
   },
 });
 
-const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
-  const getQueryParams = (field, agent, status) => ({
+const fetchClosedListings = async (AGENTS, dateToSearchBefore) => {
+  const getQueryParams = (agent) => ({
     TableName: 'Listings',
-    IndexName: 'StandardStatus-ModificationTimestamp-index',
-    KeyConditionExpression: '#status = :status',
-    FilterExpression: `${field} = :agent`,
+    IndexName: 'ListAgentFullName-index',
+    KeyConditionExpression: '#agent = :agent',
+    FilterExpression: '#status = :status AND #timestamp < :date',
     ExpressionAttributeNames: {
+      '#agent': 'ListAgentFullName',
       '#status': 'StandardStatus',
+      '#timestamp': 'ModificationTimestamp',
     },
     ExpressionAttributeValues: {
       ':agent': agent,
-      ':status': status,
+      ':status': 'Closed',
+      ':date': dateToSearchBefore,
     },
-    ProjectionExpression: 'ListingKey, ModificationTimestamp, StandardStatus, ListAgentFullName, CoListAgentFullName, Media, UnparsedAddress, Latitude, Longitude, ListPrice, PublicRemarks, BathroomsFull',
   });
 
   const fetchAllItems = async (params, lastEvaluatedKey = null) => {
@@ -45,12 +47,7 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
     return items;
   };
 
-  const queries = AGENTS.flatMap(agent =>
-    STATUSES.flatMap(status => [
-      getQueryParams('ListAgentFullName', agent, status),
-      getQueryParams('CoListAgentFullName', agent, status),
-    ])
-  );
+  const queries = AGENTS.map(agent => getQueryParams(agent));
 
   try {
     const results = await Promise.all(
@@ -68,10 +65,10 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
 
 export default async function handler(req, res) {
   const AGENTS = ['Sheri Skora', 'Kristin Kuntz', 'Kristin Leon'];
-  const STATUSES = ['Active', 'Pending'];
+  const dateToSearchBefore = '2024-06-01T00:00:00.000Z';
 
   try {
-    const items = await fetchListings(AGENTS, STATUSES);
+    const items = await fetchClosedListings(AGENTS, dateToSearchBefore);
     res.status(200).json({ Items: items });
   } catch (error) {
     res.status(500).json({ error: error.message });
