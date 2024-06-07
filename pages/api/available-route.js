@@ -1,3 +1,4 @@
+// pages/api/available-route.js
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 
@@ -9,7 +10,7 @@ const client = new DynamoDBClient({
   },
 });
 
-const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
+const fetchListings = async (AGENTS, STATUSES) => {
   const getQueryParams = (field, agent, status) => ({
     TableName: 'Listings',
     IndexName: 'StandardStatus-ModificationTimestamp-index',

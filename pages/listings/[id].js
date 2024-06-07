@@ -1,3 +1,4 @@
+// pages/listings/[id].js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -11,10 +12,10 @@ const ListingDetailPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (id) {
+    if (id && endpoint) {
       const fetchListing = async () => {
         try {
-          const apiEndpoint = endpoint === 'goodbye' ? '/api/goodbye' : '/api/hello';
+          const apiEndpoint = endpoint === 'sold' ? '/api/sold-route' : '/api/available-route';
           const res = await axios.get(`${apiEndpoint}?id=${id}`);
           console.log('API response:', res.data);
           if (res.data && res.data.Items && res.data.Items.length > 0) {
