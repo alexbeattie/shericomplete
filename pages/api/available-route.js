@@ -1,4 +1,3 @@
-// pages/api/available-route.js
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 
@@ -10,21 +9,41 @@ const client = new DynamoDBClient({
   },
 });
 
-const fetchListings = async (AGENTS, STATUSES) => {
-  const getQueryParams = (field, agent, status) => ({
+const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
+  const getQueryParams = (coAgent, agent) => ({
     TableName: 'Listings',
-    IndexName: 'StandardStatus-ModificationTimestamp-index',
-    KeyConditionExpression: '#status = :status',
-    FilterExpression: `${field} = :agent`,
+    IndexName: 'CoListAgentFullName-ListAgentFullName-index',
+    KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
+    FilterExpression: 'StandardStatus IN (:status1, :status2) AND StandardStatus <> :closedStatus AND #timestamp > :date',
     ExpressionAttributeNames: {
-      '#status': 'StandardStatus',
+      '#timestamp': 'ModificationTimestamp',
+    },
+    ExpressionAttributeValues: {
+      ':coAgent': coAgent,
+      ':agent': agent,
+      ':status1': STATUSES[0],
+      ':status2': STATUSES[1],
+      ':closedStatus': 'Closed',
+      ':date': dateToSearchBefore,
+    },
+  });
+  const getSingleAgentQueryParams = (agent) => ({
+    TableName: 'Listings',
+    IndexName: 'CoListAgentFullName-ListAgentFullName-index',
+    KeyConditionExpression: 'CoListAgentFullName = :agent OR ListAgentFullName = :agent',
+    FilterExpression: 'StandardStatus IN (:status1, :status2) AND StandardStatus <> :closedStatus AND #timestamp > :date',
+    ExpressionAttributeNames: {
+      '#timestamp': 'ModificationTimestamp',
     },
     ExpressionAttributeValues: {
       ':agent': agent,
-      ':status': status,
+      ':status1': STATUSES[0],
+      ':status2': STATUSES[1],
+      ':closedStatus': 'Closed',
+      ':date': dateToSearchBefore,
     },
-    ProjectionExpression: 'ListingKey, ModificationTimestamp, StandardStatus, ListAgentFullName, CoListAgentFullName, Media, UnparsedAddress, Latitude, Longitude, ListPrice, PublicRemarks, BathroomsFull',
   });
+
 
   const fetchAllItems = async (params, lastEvaluatedKey = null) => {
     let items = [];
@@ -35,7 +54,9 @@ const fetchListings = async (AGENTS, STATUSES) => {
         queryParams.ExclusiveStartKey = currentLastEvaluatedKey;
       }
       const command = new QueryCommand(queryParams);
+      // console.log('Sending query with params:', JSON.stringify(queryParams, null, 2));
       const data = await client.send(command);
+      // console.log('Received data:', JSON.stringify(data, null, 2));
       if (data && data.Items) {
         items = items.concat(data.Items);
         currentLastEvaluatedKey = data.LastEvaluatedKey;
@@ -46,21 +67,17 @@ const fetchListings = async (AGENTS, STATUSES) => {
     return items;
   };
 
-  const queries = AGENTS.flatMap(agent =>
-    STATUSES.flatMap(status => [
-      getQueryParams('ListAgentFullName', agent, status),
-      getQueryParams('CoListAgentFullName', agent, status),
-    ])
-  );
-
   try {
-    const results = await Promise.all(
-      queries.map(params => fetchAllItems(params))
-    );
-
+    const queries = [
+      ...AGENTS.flatMap(coAgent =>
+        AGENTS.map(agent => getQueryParams(coAgent, agent))
+      ),
+      // ...AGENTS.map(agent => getSingleAgentQueryParams(agent)),
+    ];
+    const results = await Promise.all(queries.map(params => fetchAllItems(params)));
     const items = results.reduce((acc, data) => acc.concat(data), []);
     items.sort((a, b) => b.ListPrice - a.ListPrice);
-    return Array.from(new Map(items.map(item => [item.ListingKey, item])).values());
+    return Array.from(new Map(items.map(item => [item.ListPrice, item])).values());
   } catch (error) {
     console.error("Error fetching data from DynamoDB:", error);
     throw new Error('Error fetching data from DynamoDB');
@@ -68,11 +85,12 @@ const fetchListings = async (AGENTS, STATUSES) => {
 };
 
 export default async function handler(req, res) {
-  const AGENTS = ['Sheri Skora', 'Kristin Kuntz', 'Kristin Leon'];
+  const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen', 'Abby Frick', 'Kristin Kuntz Leon'];
   const STATUSES = ['Active', 'Pending'];
+  const dateToSearchBefore = '2022-01-01T00:00:00.000Z';
 
   try {
-    const items = await fetchListings(AGENTS, STATUSES);
+    const items = await fetchListings(AGENTS, STATUSES, dateToSearchBefore);
     res.status(200).json({ Items: items });
   } catch (error) {
     res.status(500).json({ error: error.message });

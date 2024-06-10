@@ -9,20 +9,33 @@ const client = new DynamoDBClient({
   },
 });
 
-const fetchClosedListings = async (AGENTS, dateToSearchBefore) => {
+const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
   const getQueryParams = (agent) => ({
     TableName: 'Listings',
     IndexName: 'ListAgentFullName-index',
-    KeyConditionExpression: '#agent = :agent',
-    FilterExpression: '#status = :status AND #timestamp < :date',
+    KeyConditionExpression: 'ListAgentFullName = :agent',
+    FilterExpression: 'StandardStatus = :closedStatus AND #timestamp > :date',
     ExpressionAttributeNames: {
-      '#agent': 'ListAgentFullName',
-      '#status': 'StandardStatus',
       '#timestamp': 'ModificationTimestamp',
     },
     ExpressionAttributeValues: {
       ':agent': agent,
-      ':status': 'Closed',
+      ':closedStatus': STATUSES[0],
+      ':date': dateToSearchBefore,
+    },
+  });
+
+  const getCoAgentQueryParams = (agent) => ({
+    TableName: 'Listings',
+    IndexName: 'CoListAgentFullName-ListAgentFullName-index',
+    KeyConditionExpression: 'CoListAgentFullName = :agent',
+    FilterExpression: 'StandardStatus = :closedStatus AND #timestamp > :date',
+    ExpressionAttributeNames: {
+      '#timestamp': 'ModificationTimestamp',
+    },
+    ExpressionAttributeValues: {
+      ':agent': agent,
+      ':closedStatus': STATUSES[0],
       ':date': dateToSearchBefore,
     },
   });
@@ -47,15 +60,15 @@ const fetchClosedListings = async (AGENTS, dateToSearchBefore) => {
     return items;
   };
 
-  const queries = AGENTS.map(agent => getQueryParams(agent));
-
   try {
-    const results = await Promise.all(
-      queries.map(params => fetchAllItems(params))
-    );
+    const agentQueries = AGENTS.map(agent => fetchAllItems(getQueryParams(agent)));
+    const coAgentQueries = AGENTS.map(agent => fetchAllItems(getCoAgentQueryParams(agent)));
+    const results = await Promise.all([...agentQueries, ...coAgentQueries]);
 
     const items = results.reduce((acc, data) => acc.concat(data), []);
     items.sort((a, b) => b.ListPrice - a.ListPrice);
+
+    // Remove duplicates by ListPrice
     return Array.from(new Map(items.map(item => [item.ListingKey, item])).values());
   } catch (error) {
     console.error("Error fetching data from DynamoDB:", error);
@@ -64,11 +77,12 @@ const fetchClosedListings = async (AGENTS, dateToSearchBefore) => {
 };
 
 export default async function handler(req, res) {
-  const AGENTS = ['Sheri Skora', 'Kristin Kuntz', 'Kristin Leon'];
-  const dateToSearchBefore = '2024-06-01T00:00:00.000Z';
+  const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Kelli Mullen', 'Abby Frick', 'Kristin Kuntz Leon'];
+  const STATUSES = ['Closed'];
+  const dateToSearchBefore = '2022-01-01T00:00:00.000Z';
 
   try {
-    const items = await fetchClosedListings(AGENTS, dateToSearchBefore);
+    const items = await fetchListings(AGENTS, STATUSES, dateToSearchBefore);
     res.status(200).json({ Items: items });
   } catch (error) {
     res.status(500).json({ error: error.message });

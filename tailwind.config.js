@@ -1,10 +1,24 @@
 // tailwind.config.js
-export const content = [
-  './app/**/*.{js,ts,jsx,tsx}',
-  './pages/**/*.{js,ts,jsx,tsx}',
-  './components/**/*.{js,ts,jsx,tsx}',
-];
-export const theme = {
-  extend: {},
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        primary: ['EB Garamond', 'serif'],
+        secondary: ['Alegreya Sans', 'sans-serif'],
+        
+      },
+      
+    },
+  },
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    // ...
+  ],
 };
-export const plugins = [];
