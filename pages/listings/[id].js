@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../lib/utils';
+import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../../utils';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 // import GoogleMapReact from 'google-map-react';
