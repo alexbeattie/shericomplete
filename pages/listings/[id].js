@@ -18,6 +18,7 @@ const ListingDetailPage = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [mapLoading, setMapLoading] = useState(true);
 
   useEffect(() => {
     if (id && endpoint) {
@@ -128,10 +129,15 @@ const ListingDetailPage = () => {
           </div>
           <div className="flex flex-col items-center justify-center p-4 lg:w-1/2" style={{ height: '24rem' }}>
             <div className="w-full h-full">
-              <MapComponent
-                latitude={listing.Latitude}
-                longitude={listing.Longitude}
-              />
+              {!mapLoading ? (
+                <MapComponent
+                  latitude={listing.Latitude}
+                  longitude={listing.Longitude}
+                  setMapLoading={setMapLoading}
+                />
+              ) : (
+                <div>Loading map...</div>
+              )}
             </div>
           </div>
         </div>

@@ -6,14 +6,14 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
-        <title>About Us - Florida Luxury Team - Luxury Properties</title>
+        <title>About Us - FLC Team - Luxury Properties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-4xl mb-8 font-secondary text-slate-500 text-center">
-              About FLC Luxury Collection
+              About FLC Team
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="text-center">
