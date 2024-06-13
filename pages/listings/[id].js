@@ -1,15 +1,16 @@
-// pages/listings/[id].js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../../utils';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-// import GoogleMapReact from 'google-map-react';
-import MapComponent from '../../components/MapComponent';
+
+import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../../utils'; // Adjust the path as needed
+import  MapComponent  from '../../components/MapComponent'; // Adjust the path as needed
+
 
 const ListingDetailPage = () => {
   const router = useRouter();

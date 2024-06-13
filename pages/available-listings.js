@@ -1,12 +1,40 @@
 // pages/available-listings.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faBath, faRuler } from '@fortawesome/free-solid-svg-icons';
+import ListingSkeleton from '../components/ListingSkeleton'; // Import the skeleton component
 
-const ListingsPage = ({ listings, listingstwo }) => {
+const ListingsPage = () => {
+  const [listings, setListings] = useState([]);
+  const [listingstwo, setListingstwo] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/api/available-route');
+        const restwo = await axios.get('/api/fetch-listings');
+        let fetchedListings = res.data.Items || [];
+        let fetchedListingstwo = restwo.data.Items || [];
+
+        fetchedListings = fetchedListings.sort((a, b) => b.ListPrice - a.ListPrice);
+        fetchedListingstwo = fetchedListingstwo.sort((a, b) => b.ListPrice - a.ListPrice);
+
+        setListings(fetchedListings);
+        setListingstwo(fetchedListingstwo);
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const convertToTitleCase = (str) => {
     return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   };
@@ -72,41 +100,20 @@ const ListingsPage = ({ listings, listingstwo }) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {listings.map(renderListing)}
-        {listingstwo.map(renderListing)}
-      </div>
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          {Array(6).fill(0).map((_, index) => (
+            <ListingSkeleton key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          {listings.map(renderListing)}
+          {listingstwo.map(renderListing)}
+        </div>
+      )}
     </div>
   );
-};
-
-export const getServerSideProps = async () => {
-  try {
-    const res = await axios.get('http://localhost:3000/api/available-route');
-    const restwo = await axios.get('http://localhost:3000/api/fetch-listings');
-    let listings = res.data.Items || [];
-    let listingstwo = restwo.data.Items || [];
-
-    // Sort listings by ListPrice from high to low
-    listings = listings.sort((a, b) => b.ListPrice - a.ListPrice);
-    console.log(listings);
-    listingstwo = listingstwo.sort((a, b) => b.ListPrice - a.ListPrice);
-    // console
-    return {
-      props: {
-        listings,
-        listingstwo,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching listings:', error);
-    return {
-      props: {
-        listings: [],
-        listingstwo: [],
-      },
-    };
-  }
 };
 
 export default ListingsPage;

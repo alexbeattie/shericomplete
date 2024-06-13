@@ -18,61 +18,57 @@ export default function About() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <div className="text-center">
                 <div className="bg-white p-6 shadow-lg rounded-lg">
-                  <div className="relative w-full h-0 pb-square mb-4">
-                    <Image
-                      src="/images/sheri-skora.jpg"
-                      alt="Agent 1"
-                      layout="fill"
-                      objectFit="cover"
-                      className="absolute inset-0"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-500">Sheri Skora</h3>
+                  <Image
+                    src="/images/sheri-skora.jpg"
+                    alt="Agent 1"
+                    width={400}
+                    height={400}
+                    objectFit="cover"
+                    className="mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-primary text-slate-500">Sheri Skora</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-white p-6 shadow-lg rounded-lg">
-                  <div className="relative w-full h-0 pb-square mb-4">
-                    <Image
-                      src="/images/kristin-kuntz-leon.jpg"
-                      alt="Agent 2"
-                      layout="fill"
-                      objectFit="cover"
-                      className="absolute inset-0"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-500">Kristin Kuntz</h3>
+                  <Image
+                    src="/images/kristin-kuntz-leon.jpg"
+                    alt="Agent 2"
+                    width={400}
+                    height={400}
+                    objectFit="cover"
+                    className="mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-primary text-slate-500">Kristin Kuntz</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-white p-6 shadow-lg rounded-lg">
-                  <div className="relative w-full h-0 pb-square mb-4">
-                    <Image
-                      src="/images/connie-joe-redman.jpg"
-                      alt="Agent 3"
-                      layout="fill"
-                      objectFit="cover"
-                      className="absolute inset-0"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-500">Agent 3</h3>
+                  <Image
+                    src="/images/connie-joe-redman.jpg"
+                    alt="Agent 3"
+                    width={400}
+                    height={400}
+                    objectFit="cover"
+                    className="mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-primary text-slate-500">Connie & Joe Redman</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
               <div className="text-center">
                 <div className="bg-white p-6 shadow-lg rounded-lg">
-                  <div className="relative w-full h-0 pb-square mb-4">
-                    <Image
-                      src="/images/kellie-mullen.jpg"
-                      alt="Agent 4"
-                      layout="fill"
-                      objectFit="cover"
-                      className="absolute inset-0"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-500">Agent 4</h3>
+                  <Image
+                    src="/images/kellie-mullen.jpg"
+                    alt="Agent 4"
+                    width={400}
+                    height={400}
+                    objectFit="cover"
+                    className="mx-auto mb-4"
+                  />
+                  <h3 className="text-xl font-primary text-slate-500">Kellie Mullen</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>

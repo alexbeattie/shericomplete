@@ -1,41 +1,11 @@
+// utils.js
 export const convertToTitleCase = (str) => {
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 };
 
-
-// export const convertAllCapsToNormalCase = (str) => {
-//   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
-// };
 export const convertAllCapsToLowerCase = (str) => {
   return str.toLowerCase();
 };
-
-
-// export const processText = (str, sentencesPerLine = 3) => {
-//   // Split the text into sentences
-//   let sentences = str.split('.');
-
-//   // Convert the first sentence to lowercase
-//   if (sentences.length > 0) {
-//     sentences[0] = sentences[0].toLowerCase();
-//   }
-
-//   // Combine sentences and add line breaks every few sentences
-//   let processedText = sentences.reduce((acc, sentence, index) => {
-//     if (index > 0 && index % sentencesPerLine === 0) {
-//       return acc + '.\n' + sentence.trim();
-//     }
-//     return acc + '.' + sentence.trim();
-//   }, '').trim();
-
-//   // Ensure the text ends with a period if there were any sentences
-//   if (sentences.length > 0) {
-//     processedText += '.';
-//   }
-
-//   return processedText;
-// };
-
 
 export const insertLineBreaks = (str, sentencesPerBlock = 3, className = '') => {
   // Split the text into sentences using a more robust regex to handle sentence boundaries
