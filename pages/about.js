@@ -6,7 +6,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
-        <title>About Us - Florida Luxury Collection - Luxury Properties</title>
+        <title>About Us - Florida Luxury Team - Luxury Properties</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
@@ -20,7 +20,7 @@ export default function About() {
                 <div className="bg-white p-6 shadow-lg rounded-lg">
                   <Image
                     src="/images/sheri-skora.jpg"
-                    alt="Agent 1"
+                    alt="Sheri Skora"
                     width={400}
                     height={400}
                     objectFit="cover"
@@ -34,13 +34,13 @@ export default function About() {
                 <div className="bg-white p-6 shadow-lg rounded-lg">
                   <Image
                     src="/images/kristin-kuntz-leon.jpg"
-                    alt="Agent 2"
+                    alt="Kristin Leon"
                     width={400}
                     height={400}
                     objectFit="cover"
                     className="mx-auto mb-4"
                   />
-                  <h3 className="text-xl font-primary text-slate-500">Kristin Kuntz</h3>
+                  <h3 className="text-xl font-primary text-slate-500">Kristin Leon</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
@@ -48,13 +48,13 @@ export default function About() {
                 <div className="bg-white p-6 shadow-lg rounded-lg">
                   <Image
                     src="/images/connie-joe-redman.jpg"
-                    alt="Agent 3"
+                    alt="Connie & Steve Redman"
                     width={400}
                     height={400}
                     objectFit="cover"
                     className="mx-auto mb-4"
                   />
-                  <h3 className="text-xl font-primary text-slate-500">Connie & Joe Redman</h3>
+                  <h3 className="text-xl font-primary text-slate-500">Connie & Steve Redman</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
@@ -62,13 +62,13 @@ export default function About() {
                 <div className="bg-white p-6 shadow-lg rounded-lg">
                   <Image
                     src="/images/kellie-mullen.jpg"
-                    alt="Agent 4"
+                    alt="Kelli Mullen"
                     width={400}
                     height={400}
                     objectFit="cover"
                     className="mx-auto mb-4"
                   />
-                  <h3 className="text-xl font-primary text-slate-500">Kellie Mullen</h3>
+                  <h3 className="text-xl font-primary text-slate-500">Kelli Mullen</h3>
                   <p className="text-slate-500"></p>
                 </div>
               </div>
