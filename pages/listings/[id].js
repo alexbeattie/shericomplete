@@ -5,10 +5,11 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import Slider from 'react-slick';
 import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../lib/utils';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
+// import GoogleMapReact from 'google-map-react';
+import MapComponent from '../../components/MapComponent';
 
 const ListingDetailPage = () => {
   const router = useRouter();
@@ -104,14 +105,34 @@ const ListingDetailPage = () => {
             ))}
           </AwesomeSlider>
         )}
-        <div className="flex flex-col items-center justify-center p-4">
-          <p className="text-gray-600 font-primary italic text-3xl text-center">{convertToTitleCase(listing.UnparsedAddress)}</p>
-          <p className="text-gray-600 font-primary text-lg text-center">${listing.ListPrice.toLocaleString()}</p>
-          <p className="text-gray-600 font-primary text-lg text-center">{listing.MlsStatus}</p>
-          <p className="text-gray-600 font-primary text-lg text-center">{listing.ListAgentFullName} & {listing.CoListAgentFullName}</p>
-          <p className="text-gray-600 mb-1 font-primary text-lg text-left">
-            {insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}
-          </p>
+        <div className="flex flex-col lg:flex-row items-stretch justify-center p-4">
+          <div className="flex flex-col items-center justify-start p-4 lg:w-1/2 lg:h-96 lg:overflow-y-auto">
+            <p className="text-gray-600 font-primary italic text-3xl text-center">
+              {convertToTitleCase(listing.UnparsedAddress)}
+            </p>
+            <p className="text-gray-600 font-primary text-lg text-center">
+              ${listing.ListPrice.toLocaleString()}
+            </p>
+            <p className="text-gray-600 font-primary text-lg text-center">
+              {listing.MlsStatus}
+            </p>
+            <p className="text-gray-600 font-primary text-lg text-center">
+              {listing.ListAgentFullName} & {listing.CoListAgentFullName}
+            </p>
+            <div className="text-gray-600 mb-1 font-primary text-lg text-left lg:overflow-y-auto lg:max-h-full">
+              <p>
+                {insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center p-4 lg:w-1/2" style={{ height: '24rem' }}>
+            <div className="w-full h-full">
+              <MapComponent
+                latitude={listing.Latitude}
+                longitude={listing.Longitude}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
