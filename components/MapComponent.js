@@ -20,8 +20,8 @@ const Marker = ({ lat, lng, onClick }) => (
 
 
 
-const MapComponent = ({ latitude, longitude, setMapLoading }) => {
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+const MapComponent = ({ latitude, longitude }) => {
+  const [center, setCenter] = useState(null);
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -258,10 +258,9 @@ const MapComponent = ({ latitude, longitude, setMapLoading }) => {
       styles: mapStyle,
     };
   };
-  const handleApiLoaded = (map, maps) => {
-    // Set mapLoading to false when the map has finished loading
-    setMapLoading(false);
-  };
+  if (!center) {
+    return <div>Loading map...</div>;
+  }
   return (
     <div style={{ height: '400px', width: '100%' }}>
       <GoogleMapReact
@@ -269,7 +268,7 @@ const MapComponent = ({ latitude, longitude, setMapLoading }) => {
         center={center}
         defaultZoom={13}
         options={createMapOptions}
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+
       >
         {/* Add your map markers or other components here */}
         <Marker
