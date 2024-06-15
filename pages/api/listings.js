@@ -1,3 +1,4 @@
+// pages/api/listings.js
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 
@@ -8,8 +9,8 @@ const client = new DynamoDBClient({
     secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
   },
 });
-const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
 
+const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
   const getQueryParams = (agent, STATUSES, dateToSearchBefore) => ({
     TableName: 'Listings',
     IndexName: 'ListAgentFullName-index',
@@ -61,8 +62,8 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
     const queries = AGENTS.map(agent => getQueryParams(agent, STATUSES, dateToSearchBefore));
     const results = await Promise.all(queries.map(params => fetchAllItems(params)));
     const items = results.reduce((acc, data) => acc.concat(data), []);
-    items.sort((a, b) => b.ListPrice - a.ListPrice);
-    return Array.from(new Map(items.map(item => [item.ListPrice, item])).values());
+    items.sort((a, b) => new Date(b.ModificationTimestamp) - new Date(a.ModificationTimestamp));
+    return items.slice(0, 3); // Return the 3 most recently modified items
   } catch (error) {
     console.error("Error fetching data from DynamoDB:", error);
     throw new Error('Error fetching data from DynamoDB');

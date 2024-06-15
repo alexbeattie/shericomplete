@@ -1,5 +1,8 @@
 // utils.js
 export const convertToTitleCase = (str) => {
+  if (typeof str !== 'string') {
+    return str; // Return the original value if it is not a string
+  }
   return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 };
 
@@ -15,6 +18,10 @@ export const insertLineBreaks = (str, sentencesPerBlock = 3, className = '') => 
   if (sentences.length > 0) {
     sentences[0] = sentences[0].charAt(0).toUpperCase() + sentences[0].slice(1).toLowerCase();
   }
+  const formatDate = (isoDateString) => {
+    const date = new Date(isoDateString);
+    return `${date.toLocaleDateString()}`;
+  };
 
   // Combine sentences and wrap them in <p> tags with Tailwind CSS classes
   const jsxElements = sentences.reduce((acc, sentence, index) => {

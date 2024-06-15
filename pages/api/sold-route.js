@@ -27,8 +27,8 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
 
   const getCoAgentQueryParams = (agent) => ({
     TableName: 'Listings',
-    IndexName: 'CoListAgentFullName-ListAgentFullName-index',
-    KeyConditionExpression: 'CoListAgentFullName = :agent',
+    IndexName: 'ListAgentFullName-CoListAgentFullName-index',
+    KeyConditionExpression: 'ListAgentFullName = :agent',
     FilterExpression: 'StandardStatus = :closedStatus AND #timestamp > :date',
     ExpressionAttributeNames: {
       '#timestamp': 'ModificationTimestamp',

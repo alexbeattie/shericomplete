@@ -10,7 +10,7 @@ const client = new DynamoDBClient({
   },
 });
 
-const agents = ['Sheri Skora', 'Kristin Leon', 'Connie Redman']; // Ensure these names are correct
+const agents = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen']; // Ensure these names are correct
 const status = 'Closed';  // We are only interested in 'Closed' listings
 
 const fetchClosedListings = async (startKeys) => {
@@ -34,31 +34,36 @@ const fetchClosedListings = async (startKeys) => {
           processedPairs.add(pairKey);
 
           let lastEvaluatedKey = startKeys ? startKeys[pairKey] : null;
-          const params = {
-            TableName: 'Listings',
-            IndexName: 'CoListAgentFullName-ListAgentFullName-index', // Ensure you have this GSI
-            KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
-            FilterExpression: 'StandardStatus = :status',
-            ExpressionAttributeValues: {
-              ':status': { S: status },
-              ':coAgent': { S: coAgent },
-              ':agent': { S: agent },
-            },
-            ExclusiveStartKey: lastEvaluatedKey,
-          };
+          let items = [];
 
-          try {
-            const data = await client.send(new QueryCommand(params));
-            if (data.Items) {
-              allItems = allItems.concat(data.Items);
+          do {
+            const params = {
+              TableName: 'Listings',
+              IndexName: 'CoListAgentFullName-ListAgentFullName-index',
+              KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
+              FilterExpression: 'StandardStatus = :status',
+              ExpressionAttributeValues: {
+                ':status': { S: status },
+                ':coAgent': { S: coAgent },
+                ':agent': { S: agent },
+              },
+              ExclusiveStartKey: lastEvaluatedKey,
+            };
+
+            try {
+              const data = await client.send(new QueryCommand(params));
+              if (data.Items) {
+                items = items.concat(data.Items);
+              }
+              lastEvaluatedKey = data.LastEvaluatedKey;
+            } catch (err) {
+              console.error('Error querying:', err);
+              throw err;
             }
-            if (data.LastEvaluatedKey) {
-              combinedLastEvaluatedKeys[pairKey] = data.LastEvaluatedKey;
-            }
-          } catch (err) {
-            console.error('Error querying:', err);
-            throw err;
-          }
+          } while (lastEvaluatedKey);
+
+          allItems = allItems.concat(items);
+          combinedLastEvaluatedKeys[pairKey] = lastEvaluatedKey;
         }
 
         // Check reverse combination
@@ -66,35 +71,46 @@ const fetchClosedListings = async (startKeys) => {
           processedPairs.add(reversePairKey);
 
           let lastEvaluatedKey = startKeys ? startKeys[reversePairKey] : null;
-          const params = {
-            TableName: 'Listings',
-            IndexName: 'CoListAgentFullName-ListAgentFullName-index', // Ensure you have this GSI
-            KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
-            FilterExpression: 'StandardStatus = :status',
-            ExpressionAttributeValues: {
-              ':status': { S: status },
-              ':coAgent': { S: agent }, // Notice the reverse here
-              ':agent': { S: coAgent }, // Notice the reverse here
-            },
-            ExclusiveStartKey: lastEvaluatedKey,
-          };
+          let items = [];
 
-          try {
-            const data = await client.send(new QueryCommand(params));
-            if (data.Items) {
-              allItems = allItems.concat(data.Items);
+          do {
+            const params = {
+              TableName: 'Listings',
+              IndexName: 'CoListAgentFullName-ListAgentFullName-index',
+              KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
+              FilterExpression: 'StandardStatus = :status',
+              ExpressionAttributeValues: {
+                ':status': { S: status },
+                ':coAgent': { S: agent },
+                ':agent': { S: coAgent },
+              },
+              ExclusiveStartKey: lastEvaluatedKey,
+            };
+
+            try {
+              const data = await client.send(new QueryCommand(params));
+              if (data.Items) {
+                items = items.concat(data.Items);
+              }
+              lastEvaluatedKey = data.LastEvaluatedKey;
+            } catch (err) {
+              console.error('Error querying:', err);
+              throw err;
             }
-            if (data.LastEvaluatedKey) {
-              combinedLastEvaluatedKeys[reversePairKey] = data.LastEvaluatedKey;
-            }
-          } catch (err) {
-            console.error('Error querying:', err);
-            throw err;
-          }
+          } while (lastEvaluatedKey);
+
+          allItems = allItems.concat(items);
+          combinedLastEvaluatedKeys[reversePairKey] = lastEvaluatedKey;
         }
       }
     }
   }
+
+  allItems.sort((a, b) => {
+    const priceA = parseFloat(a.ListPrice.N);
+    const priceB = parseFloat(b.ListPrice.N);
+    return priceB - priceA;
+  });
 
   console.log('Returning items with combinedLastEvaluatedKeys:', combinedLastEvaluatedKeys);
 

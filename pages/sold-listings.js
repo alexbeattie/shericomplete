@@ -49,10 +49,11 @@ const ListingsPage = () => {
           />
         </Link>
         <div className="p-4 text-left">
-          <p className="text-slate-500 font-primary text-balance mt-2 py-2 uppercase text-center">
+          <p className="text-slate-500 font-secondary text-balance mt-2 py-2 uppercase text-center">
             {convertToTitleCase(listing.UnparsedAddress)}
           </p>
-          <div className="text-gray-600 font-primary flex justify-center items-center space-x-2 whitespace-nowrap px-2">
+     
+          <div className="text-gray-600 font-secondary flex justify-center items-center space-x-2 whitespace-nowrap px-2">
             <div className="flex items-center">
               <FontAwesomeIcon icon={faBed} className="text-gray-400 mr-1" />
               <span>{listing.BedroomsTotal} Bed</span>
@@ -61,7 +62,7 @@ const ListingsPage = () => {
               <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
               <span>{listing.BathroomsFull} Bath</span>
             </div>
-            {listing.BathroomsHalf && (
+            {listing.BathroomsHalf > 0 && (
               <div className="flex items-center">
                 <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
                 <span>{listing.BathroomsHalf} Half Bath</span>
@@ -74,7 +75,7 @@ const ListingsPage = () => {
               </div>
             )}
           </div>
-          <p className="text-gray-600 font-primary text-center pb-2">
+          <p className="text-gray-600 font-secondary text-center pb-2">
             ${listing.ListPrice.toLocaleString()}
           </p>
         </div>

@@ -87,7 +87,7 @@ const ListingDetailPage = () => {
   //   slidesToScroll: 1,
   // };
   return (
-    <div className="container mx-auto px-4 py-8 mt-10">
+    <div className="container mx-auto px-4 py-8">
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         {mediaUrls.length > 0 && (
           <AwesomeSlider bullets={false} infinite={true} transitionDelay={500}>
