@@ -11,7 +11,7 @@ AWS.config.update({
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-export default async (req, res) => {
+const handler = (req, res) => {
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 

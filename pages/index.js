@@ -94,7 +94,7 @@ export default function Home({ listings }) {
                   List Your Home With Us
                 </h1>
                 <h2 className='text-2xl font-secondary text-slate-500 font-semibold' data-tn='hero-headline'>
-                  Exclusive Marketing Presentation
+                  Exclusive Marketing Presentation&apos;
                 </h2>
               </div>
               <p className='hero-body text-gray-700 mt-4 font-secondary'>
@@ -105,7 +105,7 @@ export default function Home({ listings }) {
                 effectively to attract the right buyers. Leveraging cutting-edge
                 technology, we provide unparalleled visibility and insights into
                 market trends, allowing us to strategize and adapt swiftly to
-                maximize your home's appeal. Moreover, our exclusive
+                maximize your home&apos;s appeal. Moreover, our exclusive
                 partnerships with leading industry experts and service providers
                 give you access to a network of resources that can enhance every
                 aspect of your listing, from staging and photography to legal
