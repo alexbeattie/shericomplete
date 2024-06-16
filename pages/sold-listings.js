@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faBath, faRuler } from '@fortawesome/free-solid-svg-icons';
 import ListingSkeleton from '../components/ListingSkeleton'; // Import the skeleton component
 import { convertToTitleCase } from '../utils'; // Import the utility function
-
+import Head from 'next/head';
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -37,6 +37,21 @@ const ListingsPage = () => {
     const formattedDate = formatDate(listing.ModificationTimestamp);
 
     return (
+      <div>
+       <Head>
+        <title>FLC Team Listings</title>
+        <meta name="description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+        <meta name="keywords" content="real estate, property, listings, exclusive estates, FLC Team" />
+        <meta property="og:title" content="FLC Team Listings" />
+        <meta property="og:description" content="Explore the available listings offered by the FLC Team. Find your dream home today." />
+        <meta property="og:image" content="/images/og-image.jpg" />
+        <meta property="og:url" content="https://flcreteam.com/listings" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FLC Team Listings" />
+        <meta name="twitter:description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+        <meta name="twitter:image" content="/images/og-image.jpg" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg">
         <Link href={`/listings/${listing.ListingKey}?endpoint=sold`} passHref>
             <Image
@@ -87,6 +102,7 @@ const ListingsPage = () => {
             </div>
       
         </Link>
+        </div>
       </div>
     );
   };

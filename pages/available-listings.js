@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
@@ -38,15 +39,8 @@ const ListingsPage = () => {
     return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   };
 
-  const formatDate = (isoDateString) => {
-    const date = new Date(isoDateString);
-    return `${date.toLocaleDateString()}`;
-  };
-
   const renderListing = (listing) => {
     const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
-    const formattedDate = formatDate(listing.ModificationTimestamp);
-
     const isPending = listing.MlsStatus !== 'Active';
 
     return (
@@ -60,7 +54,6 @@ const ListingsPage = () => {
             width={300}
             height={200}
             className="w-full h-60 object-cover"
-
             priority={true}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
@@ -107,19 +100,35 @@ const ListingsPage = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-          {Array(6).fill(0).map((_, index) => (
-            <ListingSkeleton key={index} />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-          {listings.map(renderListing)}
-          {listingstwo.map(renderListing)}
-        </div>
-      )}
+    <div>
+      <Head>
+        <title>FLC Team Listings</title>
+        <meta name="description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+        <meta name="keywords" content="real estate, property, listings, exclusive estates, FLC Team" />
+        <meta property="og:title" content="FLC Team Listings" />
+        <meta property="og:description" content="Explore the available listings offered by the FLC Team. Find your dream home today." />
+        <meta property="og:image" content="/images/og-image.jpg" />
+        <meta property="og:url" content="https://flcreteam.com/listings" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FLC Team Listings" />
+        <meta name="twitter:description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+        <meta name="twitter:image" content="/images/og-image.jpg" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className="container mx-auto px-4 py-8">
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            {Array(6).fill(0).map((_, index) => (
+              <ListingSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+            {listings.map(renderListing)}
+            {listingstwo.map(renderListing)}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

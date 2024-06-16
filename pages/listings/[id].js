@@ -7,9 +7,10 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { convertToTitleCase, insertLineBreaks } from '../../utils'; // Adjust the path as needed
-import MapComponent from '../../components/MapComponent'; // Adjust the path as needed
+import { convertToTitleCase, insertLineBreaks } from '../../utils';
 import { truncateString } from '../../utils';
+import MapComponent from '../../components/MapComponent';
+
 const ListingDetailPage = () => {
   const router = useRouter();
   const { id, endpoint } = router.query;
@@ -29,7 +30,6 @@ const ListingDetailPage = () => {
             const item = res.data.Items.find(listing => listing.ListingKey === id);
             if (item) {
               setListing(item);
-              console.log('Listing data:', item);
             } else {
               setError('Listing not found');
             }
@@ -38,7 +38,6 @@ const ListingDetailPage = () => {
           }
         } catch (err) {
           setError('Error fetching listing');
-          console.error('Fetch error:', err);
         } finally {
           setLoading(false);
         }
@@ -47,11 +46,6 @@ const ListingDetailPage = () => {
       fetchListing();
     }
   }, [id, endpoint]);
-
-  const extractTitleFromUrl = (url) => {
-    const fileName = url.substring(url.lastIndexOf('/') + 1);
-    return fileName.replace(/[-_]/g, ' ').replace(/\.[^/.]+$/, ''); // Replace dashes and underscores, and remove file extension
-  };
 
   const handleImageLoad = () => {
     setImageLoading(false);
@@ -83,24 +77,23 @@ const ListingDetailPage = () => {
     return <div>No listing found</div>;
   }
 
-  console.log('Rendering listing:', listing);
-
   const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
   const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`;
-  const truncatedRemarks = truncateString(listing.PublicRemarks, 60); // Adjust the length as needed
+  const truncatedAddress = truncateString(listing.UnparsedAddress, 60);
+  const truncatedRemarks = truncateString(listing.PublicRemarks, 160);
 
   return (
     <>
       <Head>
-        <title>{listing.UnparsedAddress} - Listing Details</title>
+        <title>{truncatedAddress} - Listing Details</title>
         <meta name="description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta name="keywords" content="real estate, property, listing" />
-        <meta property="og:title" content={truncatedRemarks} />
+        <meta property="og:title" content={truncatedAddress} />
         <meta property="og:description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta property="og:image" content={mediaUrls[0] || 'default-image-url'} />
         <meta property="og:url" content={currentUrl} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={listing.UnparsedAddress} />
+        <meta name="twitter:title" content={truncatedAddress} />
         <meta name="twitter:description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta name="twitter:image" content={mediaUrls[0] || 'default-image-url'} />
         <link rel="icon" href="/favicon.ico" />
@@ -117,14 +110,14 @@ const ListingDetailPage = () => {
                       <div className="slider-image">
                         <Image
                           src={url}
-                          alt={extractTitleFromUrl(url)}
+                          alt={url}
                           layout="fill"
                           objectFit="cover"
                           onLoadingComplete={handleImageLoad}
                         />
                       </div>
                       <div className="slider-caption p-2 text-center text-gray-700">
-                        {extractTitleFromUrl(url)}
+                        {url}
                       </div>
                     </div>
                   ))}
