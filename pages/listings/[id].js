@@ -9,7 +9,7 @@ import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import { convertToTitleCase, insertLineBreaks } from '../../utils'; // Adjust the path as needed
 import MapComponent from '../../components/MapComponent'; // Adjust the path as needed
-
+import { truncateString } from '../../utils';
 const ListingDetailPage = () => {
   const router = useRouter();
   const { id, endpoint } = router.query;
@@ -86,21 +86,22 @@ const ListingDetailPage = () => {
   console.log('Rendering listing:', listing);
 
   const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
-  const currentUrl = `https://example.com${router.asPath}`;
+  const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`;
+  const truncatedRemarks = truncateString(listing.PublicRemarks, 60); // Adjust the length as needed
 
   return (
     <>
       <Head>
         <title>{listing.UnparsedAddress} - Listing Details</title>
-        <meta name="description" content={`View details about the property located at ${listing.UnparsedAddress}`} />
+        <meta name="description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta name="keywords" content="real estate, property, listing" />
-        <meta property="og:title" content={listing.UnparsedAddress} />
-        <meta property="og:description" content={`View details about the property located at ${listing.UnparsedAddress}`} />
+        <meta property="og:title" content={truncatedRemarks} />
+        <meta property="og:description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta property="og:image" content={mediaUrls[0] || 'default-image-url'} />
         <meta property="og:url" content={currentUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={listing.UnparsedAddress} />
-        <meta name="twitter:description" content={`View details about the property located at ${listing.UnparsedAddress}`} />
+        <meta name="twitter:description" content={`View details about the property located at ${truncatedRemarks}`} />
         <meta name="twitter:image" content={mediaUrls[0] || 'default-image-url'} />
         <link rel="icon" href="/favicon.ico" />
       </Head>

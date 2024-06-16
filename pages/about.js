@@ -1,4 +1,3 @@
-// pages/about.js
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -6,7 +5,17 @@ export default function About() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Head>
-        <title>About Us - FLC Team - Luxury Properties</title>
+        <title>About Us - FLC Luxury Collection</title>
+        <meta name="description" content="Learn more about the FLC Luxury Collection team. Our experienced professionals are here to help you with all your real estate needs." />
+        <meta name="keywords" content="real estate, FLC team, luxury collection, about us" />
+        <meta property="og:title" content="About Us - FLC Luxury Collection" />
+        <meta property="og:description" content="Learn more about the FLC Luxury Collection team. Our experienced professionals are here to help you with all your real estate needs." />
+        <meta property="og:image" content="/images/flc-team.jpg" /> {/* Replace with an appropriate image */}
+        <meta property="og:url" content="https://flcreteam.com/about" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Us - FLC Luxury Collection" />
+        <meta name="twitter:description" content="Learn more about the FLC Luxury Collection team. Our experienced professionals are here to help you with all your real estate needs." />
+        <meta name="twitter:image" content="/images/flc-team.jpg" /> {/* Replace with an appropriate image */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>

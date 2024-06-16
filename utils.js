@@ -10,6 +10,18 @@ export const convertAllCapsToLowerCase = (str) => {
   return str.toLowerCase();
 };
 
+/**
+ * Truncates a string to the specified length and adds ellipses if it exceeds that length.
+ * @param {string} str - The string to truncate.
+ * @param {number} num - The maximum length of the truncated string.
+ * @return {string} - The truncated string.
+ */
+export function truncateString(str, num) {
+  if (str.length <= num) {
+    return str;
+  }
+  return str.slice(0, num) + '...';
+}
 export const insertLineBreaks = (str, sentencesPerBlock = 3, className = '') => {
   // Split the text into sentences using a more robust regex to handle sentence boundaries
   const sentences = str.match(/[^\.!\?]+[\.!\?]+/g) || [];
