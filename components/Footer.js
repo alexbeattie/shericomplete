@@ -1,44 +1,40 @@
-// components/Footer.js
 import Link from 'next/link';
 import Image from 'next/image';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faContactCard, faMailBulk, faMailForward, faMailReply, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faContactCard } from '@fortawesome/free-solid-svg-icons';
+
 const Footer = () => {
   return (
-    <footer className="p-4 w-full">
-      <div className="container mx-auto flex flex-col items-center">
-        <div className="text-white text-2xl font-bold mb-2">
-          <Link href="/">
-            <Image src="/images/flc-logo-horizontal-dark.png" alt="Logo" width={150} height={100} />
-          </Link>
+    <footer className="bg-white p-8 text-gray-900">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row items-center space-x-4">
+          <div className="flex items-center space-x-2">
+            <FontAwesomeIcon icon={faPhone} className="text-gray-500" />
+            <span className="text-slate-500 font-secondary hover:text-gray-700">727-501-6516</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <FontAwesomeIcon icon={faContactCard} className="text-gray-500" />
+            <span className="text-slate-500 font-secondary hover:text-gray-700 uppercase">flcteamre@gmail.com</span>
+          </div>
         </div>
-        <div className="flex space-x-4">
-          <p className="text-slate-500 font-secondary">
-            <FontAwesomeIcon icon={faPhone} className="text-slate-500 px-2 text-xs" />
-            
-            <a className=" text-slate-500"href="tel:+7275016516">727 501-6516</a>
-            
-            <FontAwesomeIcon icon={faContactCard} className="text-slate-500 text-xs pl-4"  />
-            
-           <a className="text-slate-500 font-secondary uppercase" href="mailto:flcteamre@gmail.com"> Email </a></p>
-          
-          {/* <Link href="/" className="text-slate-500">
-            Home
-          </Link>
-          <Link href="/available-listings" className="text-slate-500">
-            About
-          </Link>
-          <Link href="/sold-listings" className="text-slate-500">
-            Services
-          </Link>
-          <Link href="/contact" className="text-slate-500">
-            Contact
-          </Link> */}
+        <div className="flex items-center space-x-8 mb-4 md:mb-0 mt-4 md:mt-0">
+          <div className="flex items-center">
+            <Link href="/" legacyBehavior>
+              <a className="flex items-center">
+                <Image src="/images/flc-logo-horizontal-dark.png" alt="FLC Logo" width={200} height={100} />
+              </a>
+            </Link>
+          </div>
+          <div className="flex items-center mt-2 md:mt-0">
+            <Image src="/images/coastal-forbes-logo.jpg" alt="Coastal Properties and Forbes Global Properties Logos" width={200} height={75} className="mt-2 md:mt-0" />
+          </div>
         </div>
-        <div className="text-slate-500 font-secondary uppercase mt-2">
-          &copy; {new Date().getFullYear()} Florida Luxury Collection. All rights reserved.
-        </div>
+      </div>
+      <div className="text-center text-slate-500 font-secondary text-nowrap mt-4">
+        &copy; {new Date().getFullYear()} Florida Luxury Collection. All rights reserved.
+      </div>
+      <div className="flex justify-center mt-4">
+        <Image src="/images/realtor-eho-logo.jpg" alt="Realtor and Equal Housing Opportunity Logos" width={50} height={75} />
       </div>
     </footer>
   );

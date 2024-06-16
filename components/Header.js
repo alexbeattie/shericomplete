@@ -13,7 +13,7 @@ const Header = () => {
   const linkClasses = (path) => {
     return router.pathname === path
       ? 'text-slate-800 font-semibold'
-      : 'text-slate-500 hover:text-blue-700';
+      : 'text-slate-500 hover:text-slate-800';
   };
 
   const toggleMenu = () => {
