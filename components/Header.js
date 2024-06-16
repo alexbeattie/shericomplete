@@ -7,8 +7,8 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const menuItems = [
   { href: '/', label: 'Home' },
-  { href: '/available-listings', label: 'Available Listings' },
-  { href: '/sold-listings', label: 'Sold Listings' },
+  { href: '/available-listings', label: 'Available' },
+  { href: '/sold-listings', label: 'Sold' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
