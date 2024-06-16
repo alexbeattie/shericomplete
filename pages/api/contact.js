@@ -8,13 +8,11 @@ AWS.config.update({
   secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
 });
 
-
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
-
     const params = {
       TableName: 'ContactFormSubmissions',
       Item: {
@@ -38,3 +36,5 @@ const handler = (req, res) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
+
+export default handler;

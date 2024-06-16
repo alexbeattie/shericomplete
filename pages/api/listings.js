@@ -70,6 +70,20 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
   }
 };
 
+// Generic sanitization function
+const sanitizeData = (data) => {
+  if (Array.isArray(data)) {
+    return data.map(sanitizeData);
+  } else if (typeof data === 'object' && data !== null) {
+    return Object.entries(data).reduce((acc, [key, value]) => {
+      acc[key] = sanitizeData(value);
+      return acc;
+    }, {});
+  } else if (data === undefined) {
+    return null; // Replace undefined with null
+  }
+  return data;
+};
 export default async function handler(req, res) {
   const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen', 'Abby Frick', 'Kristin Kuntz Leon'];
   const STATUSES = ['Active', 'Pending'];
@@ -77,7 +91,11 @@ export default async function handler(req, res) {
 
   try {
     const items = await fetchListings(AGENTS, STATUSES, dateToSearchBefore);
-    res.status(200).json({ Items: items });
+
+    // Sanitize the items data using the generic sanitization function
+    const sanitizedItems = sanitizeData(items);
+
+    res.status(200).json({ Items: sanitizedItems });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
