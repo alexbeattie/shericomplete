@@ -47,58 +47,62 @@ const ListingsPage = () => {
     const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
     const formattedDate = formatDate(listing.ModificationTimestamp);
 
+    const isPending = listing.MlsStatus !== 'Active';
+
     return (
-      <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-        <Link href={`/listings/${listing.ListingKey}?endpoint=active`} passHref>
-            <Image
-              src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
-              alt={listing.ListingKey}
-              width={300}
-              height={200}
-              className="w-full h-48 object-cover"
-              priority={true}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
-              <div className="flex justify-between items-baseline font-secondary">
-                <div>
-                  <span className="text-lg font-semibold block leading-tight">
-                    {listing.MlsStatus === 'Active' ? (
-                      `$${listing.ListPrice.toLocaleString()}`
-                    ) : (
-                      <span className="text-red-500 font-extrabold italic">Pending</span>
-                    )}
-                  </span>
-                  <span className="block leading-tight">{convertToTitleCase(listing.UnparsedAddress)}</span>
-                  <span className="block leading-tight">{convertToTitleCase(listing.City)}, {convertToTitleCase(listing.StateOrProvince)} {listing.PostalCode}</span>
+      <Link href={`/listings/${listing.ListingKey}?endpoint=active`} passHref key={listing.ListingKey}>
+        <div
+          className={`relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 ${isPending ? 'border-2 border-red-500' : ''}`}
+        >
+          <Image
+            src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
+            alt={listing.ListingKey}
+            width={300}
+            height={200}
+            className="w-full h-60 object-cover"
+
+            priority={true}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
+            <div className="flex justify-between items-baseline font-secondary">
+              <div>
+                <span className="text-lg font-semibold block leading-tight">
+                  {listing.MlsStatus === 'Active' ? (
+                    `$${listing.ListPrice.toLocaleString()}`
+                  ) : (
+                    <span className="text-red-500 font-extrabold italic">Pending</span>
+                  )}
+                </span>
+                <span className="block leading-tight">{convertToTitleCase(listing.UnparsedAddress)}</span>
+                <span className="block leading-tight">{convertToTitleCase(listing.City)}, {convertToTitleCase(listing.StateOrProvince)} {listing.PostalCode}</span>
+              </div>
+              <div className="text-right leading-tight">
+                <div className="flex items-center justify-end">
+                  <FontAwesomeIcon icon={faBed} className="text-gray-400 mr-1" />
+                  <span>{listing.BedroomsTotal} Bed</span>
                 </div>
-                <div className="text-right leading-tight">
-                  <div className="flex items-center justify-end">
-                    <FontAwesomeIcon icon={faBed} className="text-gray-400 mr-1" />
-                    <span>{listing.BedroomsTotal} Bed</span>
-                  </div>
+                <div className="flex items-center justify-end">
+                  <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
+                  <span>{listing.BathroomsFull} Bath</span>
+                </div>
+                {listing.BathroomsHalf > 0 && (
                   <div className="flex items-center justify-end">
                     <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
-                    <span>{listing.BathroomsFull} Bath</span>
+                    <span>{listing.BathroomsHalf} Half Bath</span>
                   </div>
-                  {listing.BathroomsHalf > 0 && (
-                    <div className="flex items-center justify-end">
-                      <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
-                      <span>{listing.BathroomsHalf} Half Bath</span>
-                    </div>
-                  )}
-                  {listing.LivingArea && (
-                    <div className="flex items-center justify-end">
-                      <FontAwesomeIcon icon={faRuler} className="text-gray-400 mr-1" />
-                      <span>{listing.LivingArea.toLocaleString()} sqft</span>
-                    </div>
-                  )}
-                </div>
+                )}
+                {listing.LivingArea && (
+                  <div className="flex items-center justify-end">
+                    <FontAwesomeIcon icon={faRuler} className="text-gray-400 mr-1" />
+                    <span>{listing.LivingArea.toLocaleString()} sqft</span>
+                  </div>
+                )}
               </div>
             </div>
-         
-        </Link>
-      </div>
+          </div>
+        </div>
+      </Link>
     );
   };
 

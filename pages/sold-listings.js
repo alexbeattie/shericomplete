@@ -37,7 +37,7 @@ const ListingsPage = () => {
     const formattedDate = formatDate(listing.ModificationTimestamp);
 
     return (
-      <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg">
         <Link href={`/listings/${listing.ListingKey}?endpoint=sold`} passHref>
             <Image
               src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
@@ -85,7 +85,7 @@ const ListingsPage = () => {
                 </div>
               </div>
             </div>
-          
+      
         </Link>
       </div>
     );
