@@ -1,4 +1,3 @@
-// pages/available-listings.js
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
@@ -49,52 +48,56 @@ const ListingsPage = () => {
     const formattedDate = formatDate(listing.ModificationTimestamp);
 
     return (
-      <div key={listing.ListingKey} className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
         <Link href={`/listings/${listing.ListingKey}?endpoint=active`} passHref>
-          <Image
-            src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
-            alt={listing.ListingKey}
-            width={300}
-            height={200}
-            className="w-full h-48 object-cover"
-            priority={true}
-          />
+            <Image
+              src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
+              alt={listing.ListingKey}
+              width={300}
+              height={200}
+              className="w-full h-48 object-cover"
+              priority={true}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
+              <div className="flex justify-between items-baseline font-secondary">
+                <div>
+                  <span className="text-lg font-semibold block leading-tight">
+                    {listing.MlsStatus === 'Active' ? (
+                      `$${listing.ListPrice.toLocaleString()}`
+                    ) : (
+                      <span className="text-red-500 font-extrabold italic">Pending</span>
+                    )}
+                  </span>
+                  <span className="block leading-tight">{convertToTitleCase(listing.UnparsedAddress)}</span>
+                  <span className="block leading-tight">{convertToTitleCase(listing.City)}, {convertToTitleCase(listing.StateOrProvince)} {listing.PostalCode}</span>
+                </div>
+                <div className="text-right leading-tight">
+                  <div className="flex items-center justify-end">
+                    <FontAwesomeIcon icon={faBed} className="text-gray-400 mr-1" />
+                    <span>{listing.BedroomsTotal} Bed</span>
+                  </div>
+                  <div className="flex items-center justify-end">
+                    <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
+                    <span>{listing.BathroomsFull} Bath</span>
+                  </div>
+                  {listing.BathroomsHalf > 0 && (
+                    <div className="flex items-center justify-end">
+                      <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
+                      <span>{listing.BathroomsHalf} Half Bath</span>
+                    </div>
+                  )}
+                  {listing.LivingArea && (
+                    <div className="flex items-center justify-end">
+                      <FontAwesomeIcon icon={faRuler} className="text-gray-400 mr-1" />
+                      <span>{listing.LivingArea.toLocaleString()} sqft</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+         
         </Link>
-        <div className="text-left">
-          <p className="text-slate-500 font-secondary text-balance mt-2 py-2 uppercase text-center">
-            {convertToTitleCase(listing.UnparsedAddress)}
-          </p>
-
-          <div className="text-gray-600 font-secondary flex justify-center items-center space-x-2 whitespace-nowrap px-2">
-            <div className="flex items-center">
-              <FontAwesomeIcon icon={faBed} className="text-slate-400 mr-1" />
-              <span>{listing.BedroomsTotal} Bed</span>
-            </div>
-            <div className="flex items-center">
-              <FontAwesomeIcon icon={faBath} className="text-slate-400 mr-1" />
-              <span>{listing.BathroomsFull} Bath </span>
-            </div>
-            {listing.BathroomsHalf > 0 && (
-              <div className="flex items-center">
-                <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
-                <span>{listing.BathroomsHalf} Half Bath</span>
-              </div>
-            )}
-            {listing.LivingArea && (
-              <div className="flex items-center">
-                <FontAwesomeIcon icon={faRuler} className="text-gray-400 mr-1" />
-                <span>{listing.LivingArea.toLocaleString()} sqft</span>
-              </div>
-            )}
-          </div>
-          <p className="text-gray-600 font-secondary text-center pb-2">
-            {listing.MlsStatus === 'Active' ? (
-              <span>${listing.ListPrice.toLocaleString()}</span>
-            ) : (
-              <span className="text-red-500 font-thin italic">Pending</span>
-            )}
-          </p>
-        </div>
       </div>
     );
   };

@@ -1,3 +1,5 @@
+//index home page
+
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -22,17 +24,19 @@ export default function Home({ listings }) {
             className='w-full h-60 object-cover'
             priority={true}
           />
-          <div className='font-secondary  absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+          <div className='font-secondary  absolute inset-0  flex items-center justify-center'>
             <span className='text-white font-secondary absolute top-0 left-0 text-lg bg-black py-1 px-2 rounded'>New Listing</span>
           </div>
-          <div className='absolute bottom-0 left-0 p-4 text-white font-secondary w-full'>
-            <div className='flex justify-between font-secondary'>
+                    <div className='absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50'></div>
+
+          <div class="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
+            <div class="flex justify-between items-baseline font-secondary">
               <div>
-                <span className='text-lg font-semibold block'>${listing.ListPrice.toLocaleString()}</span>
-                <span className='block'>{convertToTitleCase(listing.UnparsedAddress)}</span>
-                <span className='block'>{convertToTitleCase(listing.City)}, {convertToTitleCase(listing.StateOrProvince)} {listing.PostalCode}</span>
+                <span class="text-lg font-semibold block leading-tight">${listing.ListPrice.toLocaleString()}</span>
+                <span class="block leading-tight">{convertToTitleCase(listing.UnparsedAddress)}</span>
+                <span class="block leading-tight">{convertToTitleCase(listing.City)}, {convertToTitleCase(listing.StateOrProvince)} {listing.PostalCode}</span>
               </div>
-              <div className='text-right'>
+              <div class="text-right leading-tight">
                 <div><span className='font-semibold'>{listing.BedroomsTotal}</span> Beds</div>
                 <div><span className='font-semibold'>{listing.BathroomsFull}</span> Baths</div>
                 <div><span className='font-semibold'>{listing.LivingArea.toLocaleString()}</span> Sq. Ft.</div>
@@ -93,10 +97,11 @@ export default function Home({ listings }) {
                 <h1 className='font-secondary hero-heading text-3xl text-slate-500 font-bold mb-4'>
                   List Your Home With Us
                 </h1>
-                <h2 className='text-2xl font-secondary text-slate-500 font-semibold' data-tn='hero-headline'>
-                  Exclusive Marketing Presentation&apos;
+                <h2 className='text-2xl font-secondary italic text-slate-500 font-light' data-tn='hero-headline'>
+                  Exclusive Marketing Presentation 
                 </h2>
               </div>
+              <div>
               <p className='hero-body text-gray-700 mt-4 font-secondary'>
                 Listing your home with our team means entrusting your most
                 valuable asset to seasoned professionals with years of
@@ -105,14 +110,17 @@ export default function Home({ listings }) {
                 effectively to attract the right buyers. Leveraging cutting-edge
                 technology, we provide unparalleled visibility and insights into
                 market trends, allowing us to strategize and adapt swiftly to
-                maximize your home&apos;s appeal. Moreover, our exclusive
-                partnerships with leading industry experts and service providers
+                maximize your home&apos;s appeal.</p>
+              </div>
+              <div>
+                <p className='hero-body text-gray-700 mt-4 font-secondary'>
+                Our exclusive partnerships with leading industry experts and service providers
                 give you access to a network of resources that can enhance every
                 aspect of your listing, from staging and photography to legal
                 and financial advice. Choose us for a seamless, successful home
                 selling experience that takes full advantage of our expertise,
-                technology, and connections.{' '}
-              </p>
+                technology, and connections.</p>
+              </div>
 
               <Link href='/contact' legacyBehavior>
                 <a

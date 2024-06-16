@@ -27,7 +27,7 @@ const CustomSlider = ({ children }) => {
         },
       }}
       style={{
-        '--slider-height-percentage': '80%',
+        '--slider-height-percentage': '50%',
         '--slider-transition-duration': '770ms',
         '--organic-arrow-thickness': '4px',
         '--organic-arrow-border-radius': '0px',

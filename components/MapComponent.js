@@ -39,6 +39,7 @@ const MapComponent = ({ latitude, longitude }) => {
   // Custom map style
   const mapStyle = [
     {
+      
       "elementType": "geometry",
       "stylers": [
         {
@@ -262,22 +263,45 @@ const MapComponent = ({ latitude, longitude }) => {
     return <div>Loading map...</div>;
   }
   return (
-    <div style={{ height: '400px', width: '100%' }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
-        center={center}
-        defaultZoom={13}
-        options={createMapOptions}
+    <div className="map-container">
+      <div className="map-wrapper aspect-video">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+          center={center}
+          defaultZoom={13}
+          options={createMapOptions}
+          style={{ height: '100%', width: '100%' }}
 
-      >
-        {/* Add your map markers or other components here */}
-        <Marker
-          lat={center.lat}
-          lng={center.lng}
-          onClick={handleMarkerClick}
+        >
+          <Marker
+            lat={center.lat}
+            lng={center.lng}
+            onClick={handleMarkerClick}
+          />
+        </GoogleMapReact>
+      </div>
+      <style jsx>{`
+        .map-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 400px;
+        }
 
-        />
-      </GoogleMapReact>
+        .map-wrapper {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        @media (max-width: 768px) {
+          .map-container {
+            min-height: 200px;
+          }
+        }
+      `}</style>
     </div>
   );
 };

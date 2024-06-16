@@ -9,7 +9,7 @@ import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 
 import { convertToTitleCase, convertAllCapsToNormalCase, insertLineBreaks } from '../../utils'; // Adjust the path as needed
-import  MapComponent  from '../../components/MapComponent'; // Adjust the path as needed
+import MapComponent from '../../components/MapComponent'; // Adjust the path as needed
 
 
 const ListingDetailPage = () => {
@@ -87,55 +87,53 @@ const ListingDetailPage = () => {
   //   slidesToScroll: 1,
   // };
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        {mediaUrls.length > 0 && (
-          <AwesomeSlider bullets={false} infinite={true} transitionDelay={500}>
-            {mediaUrls.map((url, index) => (
-              <div key={index} className="h-96"> {/* Adjusted height */}
-                <div className="h-full">
-                  <Image
-                    src={url}
-                    alt={`Image ${index + 1}`}
-                    // width={800}
-                    // height={600}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </AwesomeSlider>
-        )}
-        <div className="flex flex-col lg:flex-row items-stretch justify-center p-4">
-          <div className="flex flex-col items-center justify-start p-4 lg:w-1/2 lg:h-96 lg:overflow-y-auto">
-            <p className="text-gray-600 font-primary italic text-3xl text-center">
-              {convertToTitleCase(listing.UnparsedAddress)}
-            </p>
-            <p className="text-gray-600 font-primary text-lg text-center">
-              ${listing.ListPrice.toLocaleString()}
-            </p>
-            <p className="text-gray-600 font-primary text-lg text-center">
-              {listing.MlsStatus}
-            </p>
-            <p className="text-gray-600 font-primary text-lg text-center">
-              {listing.ListAgentFullName} & {listing.CoListAgentFullName}
-            </p>
-            <div className="text-gray-600 mb-1 font-primary text-lg text-left lg:overflow-y-auto lg:max-h-full">
-              <p>
-                {insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}
+    <div className="bg-gray-100">
+      <div className="max-w-7xl mx-auto py-8 px-4">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          {mediaUrls.length > 0 && (
+            <div className="slider-container">
+              <AwesomeSlider bullets={false} infinite={true} transitionDelay={500}>
+                {mediaUrls.map((url, index) => (
+                  <div key={index} className="slider-item">
+                    <div className="slider-image">
+                      <Image
+                        src={url}
+                        alt={`Image ${index + 1}`}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </AwesomeSlider>
+            </div>
+          )}
+          <div className="p-4">
+            <div className="text-center mb-6">
+              <h1 className="text-3xl text-slate-500 font-bold font-secondary">
+                {convertToTitleCase(listing.UnparsedAddress)}
+              </h1>
+              <p className="text-lg text-slate-500 mt-2 font-secondary">
+                ${listing.ListPrice.toLocaleString()}
+              </p>
+              <p className="text-lg text-slate-500 mt-2 font-secondary">
+                {listing.MlsStatus}
+              </p>
+              <p className="text-lg text-slate-500 mt-2 font-secondary">
+                {listing.ListAgentFullName} & {listing.CoListAgentFullName}
               </p>
             </div>
-          </div>
-          <div className="flex flex-col items-center justify-center p-4 lg:w-1/2" style={{ height: '24rem' }}>
-            <div className="w-full h-full">
-              {/* {!mapLoading ? ( */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="font-secondary text-gray-700 lg:overflow-y-auto lg:max-h-96">
+                <p>{insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}</p>
+              </div>
+              <div className="aspect-h-16">
                 <MapComponent
                   latitude={listing.Latitude}
                   longitude={listing.Longitude}
                   setMapLoading={setMapLoading}
                 />
-              
+              </div>
             </div>
           </div>
         </div>
