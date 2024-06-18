@@ -1,0 +1,11 @@
+.leaflet-popup-content-wrapper {
+  @apply p-0 rounded-lg shadow-lg;
+}
+
+.leaflet-popup-tip {
+  @apply hidden;
+}
+
+.leaflet-popup-content {
+  @apply p-0;
+}

@@ -7,8 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
-import { convertToTitleCase, insertLineBreaks } from '../../utils';
-import { truncateString } from '../../utils';
+import { convertToTitleCase, insertLineBreaks, truncateString } from '../../utils';
 import MapComponent from '../../components/MapComponent';
 
 const ListingDetailPage = () => {
@@ -17,7 +16,6 @@ const ListingDetailPage = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [mapLoading, setMapLoading] = useState(true);
   const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
@@ -77,7 +75,7 @@ const ListingDetailPage = () => {
     return <div>No listing found</div>;
   }
 
-  const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
+  const mediaUrls = listing.Media ? listing.Media.split(',').map(url => url.trim()) : [];
   const currentUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${router.asPath}`;
   const truncatedAddress = truncateString(listing.UnparsedAddress, 60);
   const truncatedRemarks = truncateString(listing.PublicRemarks, 160);
@@ -103,25 +101,22 @@ const ListingDetailPage = () => {
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             {mediaUrls.length > 0 ? (
               <div className="slider-container relative">
-                {imageLoading && <Skeleton height={300} />}
                 <AwesomeSlider bullets={false} infinite={true} transitionDelay={500}>
                   {mediaUrls.map((url, index) => (
                     <div key={index} className="slider-item">
                       <div className="slider-image">
                         <Image
                           src={url}
-                          alt={url}
+                          alt={`Image ${index + 1}`}
                           layout="fill"
                           objectFit="cover"
                           onLoadingComplete={handleImageLoad}
                         />
                       </div>
-                      <div className="slider-caption p-2 text-center text-gray-700">
-                        {url}
-                      </div>
                     </div>
                   ))}
                 </AwesomeSlider>
+                {imageLoading && <Skeleton height={300} />}
               </div>
             ) : (
               <Skeleton height={300} />
@@ -149,7 +144,6 @@ const ListingDetailPage = () => {
                   <MapComponent
                     latitude={listing.Latitude}
                     longitude={listing.Longitude}
-                    setMapLoading={setMapLoading}
                   />
                 </div>
               </div>

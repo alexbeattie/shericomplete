@@ -10,7 +10,9 @@ const menuItems = [
   { href: '/available-listings', label: 'Available' },
   { href: '/sold-listings', label: 'Sold' },
   { href: '/about', label: 'About' },
+  { href: '/full-page-map', label: 'Map' },
   { href: '/contact', label: 'Contact' },
+
 ];
 
 const Header = () => {
