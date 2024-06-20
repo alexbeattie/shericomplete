@@ -11,11 +11,11 @@ const client = new DynamoDBClient({
 });
 
 const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
-  const getQueryParams = (agent, STATUSES, dateToSearchBefore) => ({
+  const getQueryParams = (agent, status, dateToSearchBefore) => ({
     TableName: 'Listings',
     IndexName: 'ListAgentFullName-index',
     KeyConditionExpression: '#ListAgentFullName = :agent',
-    FilterExpression: '#StandardStatus IN (:status1, :status2) AND #timestamp > :date',
+    FilterExpression: '#StandardStatus = :status AND #timestamp > :date',
     ExpressionAttributeNames: {
       '#ListAgentFullName': 'ListAgentFullName',
       '#StandardStatus': 'StandardStatus',
@@ -23,8 +23,7 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
     },
     ExpressionAttributeValues: {
       ':agent': agent,
-      ':status1': STATUSES[0],
-      ':status2': STATUSES[1],
+      ':status': status,
       ':date': dateToSearchBefore,
     },
   });
@@ -57,19 +56,28 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
 
     return items;
   };
-
   try {
-    const queries = AGENTS.map(agent => getQueryParams(agent, STATUSES, dateToSearchBefore));
+    const queries = [];
+    AGENTS.forEach(agent => {
+      STATUSES.forEach(status => {
+        queries.push(getQueryParams(agent, status, dateToSearchBefore));
+      });
+    });
+
     const results = await Promise.all(queries.map(params => fetchAllItems(params)));
-    const items = results.reduce((acc, data) => acc.concat(data), []);
-    items.sort((a, b) => new Date(b.ModificationTimestamp) - new Date(a.ModificationTimestamp));
-    return items.slice(0, 3); // Return the 3 most recently modified items
+    const items = results.flat();
+    const uniqueItems = Array.from(new Set(items.map(item => item.ListingKey))) // Assuming ListingID is the unique identifier
+      .map(id => items.find(item => item.ListingKey === id));
+
+    uniqueItems.sort((a, b) => new Date(b.ModificationTimestamp) - new Date(a.ModificationTimestamp));
+    return uniqueItems.slice(0, 3); // Return the 3 most recently modified unique items
   } catch (error) {
     console.error("Error fetching data from DynamoDB:", error);
     throw new Error('Error fetching data from DynamoDB');
   }
 };
 
+// Generic sanitization function
 // Generic sanitization function
 const sanitizeData = (data) => {
   if (Array.isArray(data)) {
@@ -84,6 +92,7 @@ const sanitizeData = (data) => {
   }
   return data;
 };
+
 export default async function handler(req, res) {
   const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen', 'Abby Frick', 'Kristin Kuntz Leon'];
   const STATUSES = ['Active', 'Pending'];

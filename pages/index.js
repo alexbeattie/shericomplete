@@ -36,7 +36,11 @@ export default function Home({ listings }) {
               <div className="text-right leading-tight">
                 <div><span className='font-semibold'>{listing.BedroomsTotal}</span> Beds</div>
                 <div><span className='font-semibold'>{listing.BathroomsFull}</span> Baths</div>
-                <div><span className='font-semibold'>{listing.LivingArea.toLocaleString()}</span> Sq. Ft.</div>
+                <div>
+                  <span className='font-semibold'>
+                    {listing.LivingArea ? listing.LivingArea.toLocaleString() : 'N/A'}
+                  </span> Sq. Ft.
+                </div>
               </div>
             </div>
           </div>

@@ -1,10 +1,13 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Marker, Popup as LeafletPopup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { convertToTitleCase, insertLineBreaks, truncateString } from '../utils';
+import Popup from '../components/Popup';
 
 // Custom marker icon for Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -20,6 +23,8 @@ const FullMapComponent = ({ listings, center }) => {
   };
 
   return (
+    <div className="relative aspect-w-16 aspect-h-10">
+
     <MapContainer center={center} zoom={10} style={{ height: '100%', width: '100%' }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -34,34 +39,15 @@ const FullMapComponent = ({ listings, center }) => {
             key={listing.ListingKey}
             position={[parseFloat(listing.Latitude), parseFloat(listing.Longitude)]}
           >
-            <Popup>
-              <div className="bg-white rounded-lg shadow-lg max-w-xs text-center leading-tight">
-                {firstImageUrl && (
-                  <div className="w-full h-48 relative">
-                    <Image
-                      src={firstImageUrl}
-                      alt={`Image of ${listing.UnparsedAddress}`}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-t-lg"
-                      fetchpriority="high" // Change to lowercase to fix the warning
-                    />
-                  </div>
-                )}
-                <div className="p-2">
-                  <h2 className="text-xl font-semibold text-gray-800 mb-1">{listing.UnparsedAddress}</h2>
-                  <p className="text-gray-600 mb-1">Price: ${formatPrice(listing.ListPrice)}</p>
-                  <p className="text-gray-600 mb-1">Status: {listing.MlsStatus}</p>
-                  <Link href={`/listings/${listing.ListingKey}?endpoint=active`} passHref>
-                    <span className="text-blue-500 cursor-pointer">View Details</span>
-                  </Link>
-                </div>
-              </div>
-            </Popup>
+            <LeafletPopup>
+              <Popup firstImageUrl={firstImageUrl} listing={listing} />
+            </LeafletPopup>
           </Marker>
+          
         );
       })}
-    </MapContainer>
+      </MapContainer>
+    </div>
   );
 };
 

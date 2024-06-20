@@ -48,7 +48,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white p-4 fixed top-0 left-0 w-full z-10 shadow-md">
+    <header className="bg-white p-4 fixed top-0 left-0 w-full z-30 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" legacyBehavior>
           <a className="flex items-center">
@@ -100,7 +100,7 @@ const Header = () => {
       </div>
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-10 transition-opacity duration-300 ease-in-out"
+          className="fixed inset-0 bg-black bg-opacity-50 z-80 transition-opacity duration-300 ease-in-out"
           onClick={handleClickOutside}
         ></div>
       )}

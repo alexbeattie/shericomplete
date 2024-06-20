@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         primary: ['EB Garamond', 'serif'],
         secondary: ['Alegreya Sans', 'sans-serif'],
+        third: ['Urbanist', 'sans-serif'],
       },
     },
   },
