@@ -1,4 +1,6 @@
 module.exports = {
+  darkMode: ['selector', '[data-mode="dark"]'],
+  
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -9,6 +11,7 @@ module.exports = {
         primary: ['EB Garamond', 'serif'],
         secondary: ['Alegreya Sans', 'sans-serif'],
         third: ['Urbanist', 'sans-serif'],
+        fourth: ['source-sans-3', 'sans-serif'],
       },
     },
   },

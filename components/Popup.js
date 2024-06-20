@@ -42,7 +42,7 @@ const Popup = ({ firstImageUrl, listing }) => {
           <span>{convertToTitleCase(listing.UnparsedAddress)}</span> - ${listing.ListPrice.toLocaleString()}
 
         </p>
-        <div className="flex justify-between items-center whitespace-nowrap space-x-4 mb-2">
+        <div className="flex justify-between items-center whitespace-nowrap space-x-4 mb-4">
           <div className="flex items-center space-x-1 space">
             <FontAwesomeIcon icon={faBed} className="w-5 h-5" />
             <span className="text-slate-500">{listing.BedroomsTotal} bd</span>

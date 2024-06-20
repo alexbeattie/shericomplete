@@ -4,7 +4,7 @@ import Link from 'next/link';
 import axios from 'axios';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBed, faBath, faRuler } from '@fortawesome/free-solid-svg-icons';
+import { faBed, faBath, faRulerCombined } from '@fortawesome/free-solid-svg-icons';
 import ListingSkeleton from '../components/ListingSkeleton'; // Import the skeleton component
 
 const ListingsPage = () => {
@@ -57,8 +57,8 @@ const ListingsPage = () => {
             priority={true}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
-            <div className="flex justify-between items-baseline font-secondary">
+          <div className="absolute bottom-0 left-0 p-4 text-white font-fourth w-full">
+            <div className="flex justify-between items-baseline font-fourth">
               <div>
                 <span className="text-lg font-semibold block leading-tight">
                   {listing.MlsStatus === 'Active' ? (
@@ -72,22 +72,22 @@ const ListingsPage = () => {
               </div>
               <div className="text-right leading-tight">
                 <div className="flex items-center justify-end">
-                  <FontAwesomeIcon icon={faBed} className="text-gray-400 mr-1" />
+                  <FontAwesomeIcon icon={faBed} className="text-white-400 mr-1" />
                   <span>{listing.BedroomsTotal} Bed</span>
                 </div>
                 <div className="flex items-center justify-end">
-                  <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
+                  <FontAwesomeIcon icon={faBath} className="text-white-400 mr-1" />
                   <span>{listing.BathroomsFull} Bath</span>
                 </div>
                 {listing.BathroomsHalf > 0 && (
                   <div className="flex items-center justify-end">
-                    <FontAwesomeIcon icon={faBath} className="text-gray-400 mr-1" />
+                    <FontAwesomeIcon icon={faBath} className="text-white-400 mr-1" />
                     <span>{listing.BathroomsHalf} Half Bath</span>
                   </div>
                 )}
                 {listing.LivingArea && (
                   <div className="flex items-center justify-end">
-                    <FontAwesomeIcon icon={faRuler} className="text-gray-400 mr-1" />
+                    <FontAwesomeIcon icon={faRulerCombined} className="text-white-400 mr-1" />
                     <span>{listing.LivingArea.toLocaleString()} sqft</span>
                   </div>
                 )}

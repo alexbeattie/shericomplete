@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup as LeafletPopup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -23,30 +23,30 @@ const FullMapComponent = ({ listings, center }) => {
   };
 
   return (
-    <div className="relative aspect-w-16 aspect-h-10">
+    <div className="flex justify-center items-center h-screen mt-16">
+      <div className="w-full max-w-4xl h-[812px] mb-24">
+        <MapContainer center={center} zoom={10} style={{ height: '100%', width: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          />
+          {listings.map((listing) => {
+            const mediaUrls = listing.Media ? listing.Media.split(',').map(url => url.trim()) : [];
+            const firstImageUrl = mediaUrls.length > 0 ? mediaUrls[0] : 'default-image-url';
 
-    <MapContainer center={center} zoom={10} style={{ height: '100%', width: '100%' }}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      />
-      {listings.map((listing) => {
-        const mediaUrls = listing.Media ? listing.Media.split(',').map(url => url.trim()) : [];
-        const firstImageUrl = mediaUrls.length > 0 ? mediaUrls[0] : 'default-image-url';
-
-        return (
-          <Marker
-            key={listing.ListingKey}
-            position={[parseFloat(listing.Latitude), parseFloat(listing.Longitude)]}
-          >
-            <LeafletPopup>
-              <Popup firstImageUrl={firstImageUrl} listing={listing} />
-            </LeafletPopup>
-          </Marker>
-          
-        );
-      })}
-      </MapContainer>
+            return (
+              <Marker
+                key={listing.ListingKey}
+                position={[parseFloat(listing.Latitude), parseFloat(listing.Longitude)]}
+              >
+                <LeafletPopup>
+                  <Popup firstImageUrl={firstImageUrl} listing={listing} />
+                </LeafletPopup>
+              </Marker>
+            );
+          })}
+        </MapContainer>
+      </div>
     </div>
   );
 };

@@ -38,22 +38,22 @@ const ListingsPage = () => {
 
     return (
       <div>
-       <Head>
-        <title>FLC Team Listings</title>
-        <meta name="description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
-        <meta name="keywords" content="real estate, property, listings, exclusive estates, FLC Team" />
-        <meta property="og:title" content="FLC Team Listings" />
-        <meta property="og:description" content="Explore the available listings offered by the FLC Team. Find your dream home today." />
-        <meta property="og:image" content="/images/og-image.jpg" />
-        <meta property="og:url" content="https://flcreteam.com/listings" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="FLC Team Listings" />
-        <meta name="twitter:description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
-        <meta name="twitter:image" content="/images/og-image.jpg" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg">
-        <Link href={`/listings/${listing.ListingKey}?endpoint=sold`} passHref>
+        <Head>
+          <title>FLC Team Listings</title>
+          <meta name="description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+          <meta name="keywords" content="real estate, property, listings, exclusive estates, FLC Team" />
+          <meta property="og:title" content="FLC Team Listings" />
+          <meta property="og:description" content="Explore the available listings offered by the FLC Team. Find your dream home today." />
+          <meta property="og:image" content="/images/og-image.jpg" />
+          <meta property="og:url" content="https://flcreteam.com/listings" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="FLC Team Listings" />
+          <meta name="twitter:description" content="Explore the exclusive listings offered by the FLC Team. Find your dream home today." />
+          <meta name="twitter:image" content="/images/og-image.jpg" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg">
+          <Link href={`/listings/${listing.ListingKey}?endpoint=sold`} passHref>
             <Image
               src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
               alt={listing.ListingKey}
@@ -63,8 +63,8 @@ const ListingsPage = () => {
               priority={true}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 p-4 text-white font-secondary w-full">
-              <div className="flex justify-between items-baseline font-secondary">
+            <div className="absolute bottom-0 left-0 p-4 text-white font-fourth w-full">
+              <div className="flex justify-between items-baseline font-fourth">
                 <div>
                   <span className="text-lg font-semibold block leading-tight">
                     {listing.MlsStatus === 'Sold' ? (
@@ -100,8 +100,8 @@ const ListingsPage = () => {
                 </div>
               </div>
             </div>
-      
-        </Link>
+
+          </Link>
         </div>
       </div>
     );

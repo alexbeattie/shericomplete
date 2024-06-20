@@ -73,42 +73,42 @@ const ContactPage = () => {
           />
         </div>
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-start">
-          <h1 className="text-2xl font-secondary font-bold mb-6 text-gray-800">Contact Us</h1>
+          <h1 className="text-2xl font-fourth font-bold mb-6 text-gray-800">Contact Us</h1>
           {success && <p className="text-slate-500 mb-4">Submission successful!</p>}
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block font-secondary text-slate-500">Name</label>
+              <label htmlFor="name" className="block font-fourth text-slate-500">Name</label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 font-secondary border text-slate-500 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 font-fourth border text-slate-500 border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 required
               />
             </div>
             <div>
-              <label htmlFor="email" className="block font-secondary text-gray-700">Email</label>
+              <label htmlFor="email" className="block font-fourth text-gray-700">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 block w-full font-secondary px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+                className="mt-1 block w-full font-fourth px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 required
               />
             </div>
             <div>
-              <label htmlFor="message" className="block font-secondary text-gray-700">Message</label>
+              <label htmlFor="message" className="block font-fourth text-gray-700">Message</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border text-slate-500 font-secondary border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border text-slate-500 font-fourth border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500 sm:text-sm"
                 rows="4"
                 required
               ></textarea>
@@ -116,7 +116,7 @@ const ContactPage = () => {
             <div>
               <button
                 type="submit"
-                className="w-full font-secondary bg-slate-600 text-white py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+                className="w-full font-fourth bg-slate-600 text-white py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
                 disabled={loading}
               >
                 {loading ? 'Submitting...' : 'Submit'}

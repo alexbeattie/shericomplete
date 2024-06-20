@@ -62,7 +62,7 @@ const Header = () => {
             <span className="ml-2 text-xl font-bold text-slate-800"></span>
           </a>
         </Link>
-        <nav className="hidden md:flex space-x-4 font-secondary text-base uppercase">
+        <nav className="hidden md:flex space-x-4 font-fourth text-base uppercase">
           {menuItems.map((item) => (
             <Link href={item.href} legacyBehavior key={item.href}>
               <a className={linkClasses(item.href)}>{item.label}</a>

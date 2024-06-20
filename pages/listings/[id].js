@@ -123,21 +123,21 @@ const ListingDetailPage = () => {
             )}
             <div className="p-4">
               <div className="text-center mb-6">
-                <h1 className="text-3xl text-slate-500 font-bold font-secondary">
+                <h1 className="text-3xl text-slate-500 font-bold font-fourth">
                   {convertToTitleCase(listing.UnparsedAddress)}
                 </h1>
-                <p className="text-lg text-slate-500 mt-2 font-secondary">
+                <p className="text-lg text-slate-500 mt-2 font-fourth">
                   ${listing.ListPrice.toLocaleString()}
                 </p>
-                <p className="text-lg text-slate-500 mt-2 font-secondary">
+                <p className="text-lg text-slate-500 mt-2 font-fourth">
                   {listing.MlsStatus}
                 </p>
-                <p className="text-lg text-slate-500 mt-2 font-secondary">
+                <p className="text-lg text-slate-500 mt-2 font-fourth">
                   {listing.ListAgentFullName} & {listing.CoListAgentFullName}
                 </p>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="font-secondary text-gray-700 lg:overflow-y-auto lg:max-h-96">
+                <div className="font-fourth text-gray-700 lg:overflow-y-auto lg:max-h-96">
                   <p>{insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}</p>
                 </div>
                 <div className="aspect-h-16">
