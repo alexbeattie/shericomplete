@@ -1,6 +1,6 @@
 // pages/_app.js
 import '../styles/globals.css';
-import './lib/fontawesome';  // Adjust the path according to your file structure
+import '../lib/fontawesome';  // Adjust the path according to your file structure
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Layout from '../components/Layout';
 import 'react-awesome-slider/dist/styles.css';
