@@ -1,4 +1,5 @@
 // pages/_app.js
+
 import '../styles/globals.css';
 import '../lib/fontawesome';  // Adjust the path according to your file structure
 import { config } from '@fortawesome/fontawesome-svg-core';
@@ -14,11 +15,15 @@ config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatic
 
 
 
+
 function MyApp({ Component, pageProps }) {
   return (
+    
+
     <Layout>
       <Component {...pageProps} />
-    </Layout>
+      </Layout>
+      
   );
 }
 

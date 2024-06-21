@@ -12,19 +12,21 @@ const FullPageMap = () => {
   const [center, setCenter] = useState([37.7749, -122.4194]); // Default center
 
   useEffect(() => {
+    console.log('Listings:', listings);
+    console.log('Center:', center);
     const fetchListings = async () => {
       try {
-        const res = await axios.get('/api/all-listings');
+        const timestamp = new Date().getTime();
+        const res = await axios.get(`/api/all-listings?t=${timestamp}`);
         console.log('API Response:', res.data); // Debugging log
         if (res.data && res.data.Items && res.data.Items.length > 0) {
           const items = res.data.Items;
           setListings(items);
-
           // Set the center to the first listing's coordinates
           const firstListing = items[0];
           const lat = parseFloat(firstListing.Latitude);
           const lng = parseFloat(firstListing.Longitude);
-
+        
           if (!isNaN(lat) && !isNaN(lng)) {
             setCenter([lat, lng]);
           } else {

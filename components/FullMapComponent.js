@@ -21,6 +21,10 @@ const FullMapComponent = ({ listings, center }) => {
   const formatPrice = (price) => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
+  const handlePopupClick = (listingKey) => {
+    // Navigate to the listing detail page using the listingKey
+    window.location.href = `/listings/${listingKey}?endpoint=active`;
+  };
 
   return (
     <div className="flex justify-center items-center h-screen mt-16">
@@ -40,7 +44,10 @@ const FullMapComponent = ({ listings, center }) => {
                 position={[parseFloat(listing.Latitude), parseFloat(listing.Longitude)]}
               >
                 <LeafletPopup>
-                  <Popup firstImageUrl={firstImageUrl} listing={listing} />
+                  <Popup key={listing.ListingKey}
+                    firstImageUrl={firstImageUrl}
+                    listing={listing} onClick={() => handlePopupClick(listing.ListingKey)}
+ />
                 </LeafletPopup>
               </Marker>
             );

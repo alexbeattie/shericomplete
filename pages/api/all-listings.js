@@ -61,8 +61,18 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
     const queries = AGENTS.map(agent => getQueryParams(agent, STATUSES, dateToSearchBefore));
     const results = await Promise.all(queries.map(params => fetchAllItems(params)));
     const items = results.reduce((acc, data) => acc.concat(data), []);
-    items.sort((a, b) => b.ListPrice - a.ListPrice);
-    return Array.from(new Map(items.map(item => [item.ListPrice, item])).values());
+
+    // Using a Map to ensure uniqueness based on ListingId
+    const uniqueItemsMap = new Map();
+    items.forEach(item => {
+      uniqueItemsMap.set(item.ListingId, item);
+    });
+
+    // Converting the map back to an array
+    const uniqueItems = Array.from(uniqueItemsMap.values());
+
+    uniqueItems.sort((a, b) => b.ListPrice - a.ListPrice);
+    return uniqueItems;
   } catch (error) {
     console.error("Error fetching data from DynamoDB:", error);
     throw new Error('Error fetching data from DynamoDB');
@@ -71,12 +81,19 @@ const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
 
 export default async function handler(req, res) {
   const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen', 'Abby Frick', 'Kristin Kuntz Leon'];
-  const STATUSES = ['Active', 'Pending'];
-  const dateToSearchBefore = '2023-05-24T15:10:07.903Z'; // Replace with your desired date
+  const STATUSES = ['Active', 'Pending', 'Closed'];
+  const dateToSearchBefore = '2023-05-24T15:10:07.903Z';
 
   try {
     const items = await fetchListings(AGENTS, STATUSES, dateToSearchBefore);
-    res.status(200).json({ Items: items });
+    const mappedItems = items.map((item) => ({
+      ...item,
+      Latitude: item.Latitude ? parseFloat(item.Latitude) : null,
+      Longitude: item.Longitude ? parseFloat(item.Longitude) : null,
+    }));
+    res.setHeader('Cache-Control', 'no-cache, no-store');
+
+    res.status(200).json({ Items: mappedItems });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

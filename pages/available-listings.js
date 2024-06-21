@@ -5,26 +5,17 @@ import axios from 'axios';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faBath, faRulerCombined } from '@fortawesome/free-solid-svg-icons';
-import ListingSkeleton from '../components/ListingSkeleton'; // Import the skeleton component
+import ListingSkeleton from '../components/ListingSkeleton';
 
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
-  const [listingstwo, setListingstwo] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/available-route');
-        const restwo = await axios.get('/api/fetch-listings');
-        let fetchedListings = res.data.Items || [];
-        let fetchedListingstwo = restwo.data.Items || [];
-
-        fetchedListings = fetchedListings.sort((a, b) => b.ListPrice - a.ListPrice);
-        fetchedListingstwo = fetchedListingstwo.sort((a, b) => b.ListPrice - a.ListPrice);
-
-        setListings(fetchedListings);
-        setListingstwo(fetchedListingstwo);
+        const res = await axios.get('/api/combined-listings');
+        setListings(res.data.Items || []);
       } catch (error) {
         console.error('Error fetching listings:', error);
       } finally {
@@ -125,7 +116,6 @@ const ListingsPage = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {listings.map(renderListing)}
-            {listingstwo.map(renderListing)}
           </div>
         )}
       </div>

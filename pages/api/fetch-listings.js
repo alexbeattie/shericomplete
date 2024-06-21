@@ -1,6 +1,7 @@
 // pages/api/fetch-listings.js
-
 const { DynamoDBClient, QueryCommand } = require("@aws-sdk/client-dynamodb");
+const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
+
 const client = new DynamoDBClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
   credentials: {
@@ -24,19 +25,19 @@ const fetchListings = async () => {
           IndexName: 'CoListAgentFullName-ListAgentFullName-index',
           KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
           FilterExpression: 'StandardStatus IN (:status1, :status2, :status3)',
-          ExpressionAttributeValues: {
-            ':coAgent': { S: coAgent },
-            ':agent': { S: agent },
-            ':status1': { S: statuses[0] },
-            ':status2': { S: statuses[1] },
-            ':status3': { S: statuses[2] },
-          }
+          ExpressionAttributeValues: marshall({
+            ':coAgent': coAgent,
+            ':agent': agent,
+            ':status1': statuses[0],
+            ':status2': statuses[1],
+            ':status3': statuses[2],
+          }),
         };
 
         try {
           const data = await client.send(new QueryCommand(params));
           if (data.Items) {
-            listings = listings.concat(data.Items);
+            listings = listings.concat(data.Items.map(item => unmarshall(item)));
           }
         } catch (err) {
           console.error(`Error querying for ${coAgent} and ${agent}:`, err);
@@ -46,7 +47,18 @@ const fetchListings = async () => {
     }
   }
 
-  return listings;
+  // Group listings by ListPrice and keep only the most recently modified item
+  const groupedByPrice = listings.reduce((acc, item) => {
+    if (!acc[item.ListPrice] || new Date(item.ModificationTimestamp) > new Date(acc[item.ListPrice].ModificationTimestamp)) {
+      acc[item.ListPrice] = item;
+    }
+    return acc;
+  }, {});
+
+  // Convert the grouped object back to an array and sort by ListPrice
+  const mostRecentListings = Object.values(groupedByPrice).sort((a, b) => b.ListPrice - a.ListPrice);
+
+  return mostRecentListings;
 };
 
 export default async function handler(req, res) {
