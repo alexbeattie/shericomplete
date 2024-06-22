@@ -68,7 +68,7 @@ const ListingsPage = () => {
                 <div>
                   <span className="text-lg font-semibold block leading-tight">
                     {listing.MlsStatus === 'Sold' ? (
-                      `$${listing.ListPrice.toLocaleString()}`
+                      `$${listing.ClosePrice.toLocaleString()}`
                     ) : (
                       <span className="text-red-500 font-thin italic">Pending</span>
                     )}
