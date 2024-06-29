@@ -1,6 +1,5 @@
-// pages/api/fetch-listings.js
-const { DynamoDBClient, QueryCommand } = require("@aws-sdk/client-dynamodb");
-const { marshall, unmarshall } = require("@aws-sdk/util-dynamodb");
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 
 const client = new DynamoDBClient({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
@@ -10,64 +9,94 @@ const client = new DynamoDBClient({
   },
 });
 
-const agents = ['Sheri Skora', 'Kristin Leon', 'Carrie Redman'];
-const statuses = ['Active', 'Closed', 'Pending'];
+const fetchListings = async (AGENTS, STATUSES, dateToSearchBefore) => {
+  const getQueryParams = (agent, STATUSES, dateToSearchBefore) => ({
+    TableName: 'Listings',
+    IndexName: 'ListAgentFullName-index',
+    KeyConditionExpression: '#ListAgentFullName = :agent',
+    FilterExpression: '#StandardStatus IN (:status1, :status2, :status3) AND #timestamp > :date',
+    ExpressionAttributeNames: {
+      '#ListAgentFullName': 'ListAgentFullName',
+      '#StandardStatus': 'StandardStatus',
+      '#timestamp': 'ModificationTimestamp',
+    },
+    ExpressionAttributeValues: {
+      ':agent': agent,
+      ':status1': STATUSES[0],
+      ':status2': STATUSES[1],
+      ':status3': STATUSES[2],
+      ':date': dateToSearchBefore,
+    },
+  });
 
-const fetchListings = async () => {
-  let listings = [];
-
-  // Loop through each combination of agents for CoListAgent and ListAgent
-  for (const coAgent of agents) {
-    for (const agent of agents) {
-      if (coAgent !== agent) {
-        const params = {
-          TableName: 'Listings',
-          IndexName: 'CoListAgentFullName-ListAgentFullName-index',
-          KeyConditionExpression: 'CoListAgentFullName = :coAgent AND ListAgentFullName = :agent',
-          FilterExpression: 'StandardStatus IN (:status1, :status2, :status3)',
-          ExpressionAttributeValues: marshall({
-            ':coAgent': coAgent,
-            ':agent': agent,
-            ':status1': statuses[0],
-            ':status2': statuses[1],
-            ':status3': statuses[2],
-          }),
-        };
-
-        try {
-          const data = await client.send(new QueryCommand(params));
-          if (data.Items) {
-            listings = listings.concat(data.Items.map(item => unmarshall(item)));
-          }
-        } catch (err) {
-          console.error(`Error querying for ${coAgent} and ${agent}:`, err);
-          console.log("Full error response:", err);
-        }
+  const fetchAllItems = async (params, lastEvaluatedKey = null) => {
+    let items = [];
+    let currentLastEvaluatedKey = lastEvaluatedKey;
+    do {
+      const queryParams = { ...params };
+      if (currentLastEvaluatedKey) {
+        queryParams.ExclusiveStartKey = currentLastEvaluatedKey;
       }
-    }
+      const command = new QueryCommand(queryParams);
+      try {
+        const data = await client.send(command);
+        if (data && data.Items) {
+          items = items.concat(data.Items);
+          currentLastEvaluatedKey = data.LastEvaluatedKey;
+        } else {
+          currentLastEvaluatedKey = null;
+        }
+      } catch (error) {
+        console.error('Error executing query:', error);
+        throw error;
+      }
+    } while (currentLastEvaluatedKey);
+    return items;
+  };
+
+  try {
+    const queries = AGENTS.map(agent => getQueryParams(agent, STATUSES, dateToSearchBefore));
+    const results = await Promise.all(queries.map(params => fetchAllItems(params)));
+    const items = results.reduce((acc, data) => acc.concat(data), []);
+
+    // Using a Map to ensure uniqueness based on ListingId
+    const uniqueItemsMap = new Map();
+    items.forEach(item => {
+      uniqueItemsMap.set(item.ListingId, item);
+    });
+
+    // Converting the map back to an array and sorting by ListPrice
+    const uniqueItems = Array.from(uniqueItemsMap.values());
+    uniqueItems.sort((a, b) => b.ListPrice - a.ListPrice);
+
+    return uniqueItems;
+  } catch (error) {
+    console.error("Error fetching data from DynamoDB:", error);
+    throw new Error('Error fetching data from DynamoDB');
   }
-
-  // Group listings by ListPrice and keep only the most recently modified item
-  const groupedByPrice = listings.reduce((acc, item) => {
-    if (!acc[item.ListPrice] || new Date(item.ModificationTimestamp) > new Date(acc[item.ListPrice].ModificationTimestamp)) {
-      acc[item.ListPrice] = item;
-    }
-    return acc;
-  }, {});
-
-  // Convert the grouped object back to an array and sort by ListPrice
-  const mostRecentListings = Object.values(groupedByPrice).sort((a, b) => b.ListPrice - a.ListPrice);
-
-  return mostRecentListings;
 };
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    const AGENTS = ['Sheri Skora', 'Kristin Leon', 'Connie Redman', 'Kelli Mullen', 'Kristin Leon'];
+    const STATUSES = ['Active', 'Pending', 'Closed'];
+    const dateToSearchBefore = '2022-01-01T15:10:07.903Z';
+
     try {
-      const listings = await fetchListings();
-      res.status(200).json(listings);
+      const items = await fetchListings(AGENTS, STATUSES, dateToSearchBefore);
+      const mappedItems = items.map((item) => ({
+        ...item,
+        Latitude: item.Latitude ? parseFloat(item.Latitude) : null,
+        Longitude: item.Longitude ? parseFloat(item.Longitude) : null,
+        // StandardStatus: item.StandardStatus === 'Closed' ? 'Sold' : item.StandardStatus,
+
+
+      }));
+
+      res.setHeader('Cache-Control', 'no-cache, no-store');
+      res.status(200).json({ Items: mappedItems });
     } catch (error) {
-      res.status(500).json({ error: 'Failed to fetch listings' });
+      res.status(500).json({ error: error.message });
     }
   } else {
     res.setHeader('Allow', ['GET']);

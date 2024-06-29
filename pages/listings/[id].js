@@ -19,31 +19,29 @@ const ListingDetailPage = () => {
   const [imageLoading, setImageLoading] = useState(true);
 
   useEffect(() => {
-    if (id && endpoint) {
-      const fetchListing = async () => {
-        try {
-          const apiEndpoint = endpoint === 'sold' ? '/api/sold-route' : '/api/available-route';
-          const res = await axios.get(`${apiEndpoint}?id=${id}`);
-          if (res.data && res.data.Items && res.data.Items.length > 0) {
-            const item = res.data.Items.find(listing => listing.ListingKey === id);
-            if (item) {
-              setListing(item);
-            } else {
-              setError('Listing not found');
-            }
+    const fetchListing = async () => {
+      try {
+        const res = await axios.get(`/api/listings-api?id=${id}&statuses=Active,Pending,Closed`);
+        if (res.data && res.data.Items && res.data.Items.length > 0) {
+          const item = res.data.Items.find(listing => listing.ListingKey === id);
+          if (item) {
+            setListing(item);
           } else {
             setError('Listing not found');
           }
-        } catch (err) {
-          setError('Error fetching listing');
-        } finally {
-          setLoading(false);
+        } else {
+          setError('Listing not found');
         }
-      };
-
+      } catch (err) {
+        setError('Error fetching listing');
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (id) {
       fetchListing();
     }
-  }, [id, endpoint]);
+  }, [id]);
 
   const handleImageLoad = () => {
     setImageLoading(false);
@@ -127,7 +125,7 @@ const ListingDetailPage = () => {
                   {convertToTitleCase(listing.UnparsedAddress)}
                 </h1>
                 <p className="text-lg text-slate-500 mt-2 font-fourth">
-                  ${listing.ListPrice.toLocaleString()}
+                  ${listing.MlsStatus === 'Closed' ? listing.ClosePrice.toLocaleString() : listing.ListPrice.toLocaleString()}
                 </p>
                 <p className="text-lg text-slate-500 mt-2 font-fourth">
                   {listing.MlsStatus}

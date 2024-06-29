@@ -13,7 +13,40 @@ const fetchListing = async (listingKey) => {
   }
   return response.json();
 };
+const getEndpoint = (status) => {
+  switch (status) {
+    case 'Active':
+      return 'active';
+    case 'Pending':
+      return 'pending';
+    case 'Closed':
+      return 'closed';  // Map 'Closed' to 'sold' for the endpoint
 
+    default:
+      return 'active';
+  }
+};
+const handlePopupClick = (listing) => {
+  const endpoint = getEndpoint(listing.StandardStatus);
+  window.location.href = `/listings/${listing.ListingKey}?endpoint=${endpoint}`;
+};
+// const handleClick = () => {
+//   let endpoint;
+//   switch (listing.StandardStatus) {
+//     case 'Active':
+//       endpoint = 'active';
+//       break;
+//     case 'Pending':
+//       endpoint = 'pending';
+//       break;
+//     case 'Closed':
+//       endpoint = 'sold';
+//       break;
+//     default:
+//       endpoint = 'active';
+//   }
+//   router.push(`/listings/${listing.ListingKey}?endpoint=${endpoint}`);
+// };
 
 const Popup = ({ firstImageUrl, listing }) => {
   const [loading, setLoading] = useState(true);
@@ -28,9 +61,7 @@ const Popup = ({ firstImageUrl, listing }) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(price);
   };
 
-  const handleClick = () => {
-    router.push(`/listings/${listing.ListingKey}?endpoint=active`);
-  };
+  
 
   return (
     <div className="bg-white rounded-lg shadow-lg max-w-xs text-center leading-tight">
@@ -74,7 +105,7 @@ const Popup = ({ firstImageUrl, listing }) => {
             <span className="text-slate-500 text-center">{listing.LivingArea} sqft</span>
           </div>
         </div>
-        <Link href={`/listings/${listing.ListingKey}?endpoint=active`} passHref>
+        <Link href={`/listings/${listing.ListingKey}?endpoint=${getEndpoint(listing.StandardStatus)}`} passHref>
           <p className="text-slate-500 uppercase cursor-pointer mb-4 font-fourth text-center">Details</p>
         </Link>
       </div>

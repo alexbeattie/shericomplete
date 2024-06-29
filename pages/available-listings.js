@@ -14,7 +14,7 @@ const ListingsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/combined-listings');
+        const res = await axios.get('/api/listings-api?statuses=Active,Pending');
         setListings(res.data.Items || []);
       } catch (error) {
         console.error('Error fetching listings:', error);
@@ -25,7 +25,6 @@ const ListingsPage = () => {
 
     fetchData();
   }, []);
-
   const convertToTitleCase = (str) => {
     return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   };

@@ -14,8 +14,7 @@ const ListingsPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('/api/sold-route');
-        const fetchedListings = res.data.Items || [];
+        const res = await axios.get('/api/listings-api?statuses=Closed&agents=Sheri Skora,Kristin Leon,Connie Redman');        const fetchedListings = res.data.Items || [];
         setListings(fetchedListings);
       } catch (error) {
         console.error('Error fetching listings:', error);
@@ -53,7 +52,7 @@ const ListingsPage = () => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <div key={listing.ListingKey} className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105 hover:shadow-lg">
-          <Link href={`/listings/${listing.ListingKey}?endpoint=sold`} passHref>
+          <Link href={`/listings/${listing.ListingKey}?endpoint=closed`} passHref>
             <Image
               src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
               alt={listing.ListingKey}

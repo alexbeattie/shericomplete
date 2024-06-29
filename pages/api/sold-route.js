@@ -13,8 +13,8 @@ const client = new DynamoDBClient({
 const docClient = DynamoDBDocumentClient.from(client);
 
 const fetchClosedListings = async () => {
-  const mainAgents = ['Sheri Skora', 'Kristin Leon', 'Kelli Mullen', 'Kristin Kuntz'];
-  const coAgents = ['Connie Redman', 'kelli Welch'];
+  const mainAgents = ['Sheri Skora', 'Kristin Leon', 'Kelli Mullen', 'Kristin Kuntz', 'Connie Redman'];
+  const coAgents = ['kelli Welch'];
   const status = 'Closed';
   const dateToSearchBefore = '2021-01-01T15:10:07.903Z'; // Adjust as needed
 
