@@ -1,7 +1,0 @@
-[
-  {
-    "route": "GET /api/listings-api",
-    "parameters": "(statuses,agents)",
-    "status": 500
-  }
-]
