@@ -33,8 +33,12 @@ const ListingsPage = () => {
     const mediaUrls = listing.Media ? listing.Media.split(',').map((url) => url.trim()) : [];
 
     return (
+     
+      
+       
       <Link href={`/listings/${listing.ListingKey}?status=closed`} passHref key={listing.ListingKey}>
         <div className="relative bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out transform hover:scale-105">
+         
           <Image
             src={mediaUrls.length > 0 ? mediaUrls[0] : 'https://via.placeholder.com/300'}
             alt={listing.ListingKey}
