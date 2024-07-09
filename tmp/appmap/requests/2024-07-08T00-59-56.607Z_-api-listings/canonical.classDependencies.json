@@ -1,0 +1,10 @@
+[
+  {
+    "caller": "GET /api/listings",
+    "callee": "api/listings"
+  },
+  {
+    "caller": "POST https://dynamodb.us-east-1.amazonaws.com/",
+    "callee": "GET /api/listings"
+  }
+]

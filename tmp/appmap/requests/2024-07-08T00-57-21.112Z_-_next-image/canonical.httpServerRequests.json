@@ -1,0 +1,7 @@
+[
+  {
+    "route": "GET /_next/image",
+    "parameters": "(url,w,q)",
+    "status": null
+  }
+]

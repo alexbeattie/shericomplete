@@ -1,0 +1,12 @@
+[
+  {
+    "route": "POST https://dynamodb.us-east-1.amazonaws.com/",
+    "parameters": "()",
+    "status": 200
+  },
+  {
+    "route": "POST https://dynamodb.us-east-1.amazonaws.com/",
+    "parameters": "()",
+    "status": null
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "api",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "listings-api",
+        "children": [
+          {
+            "type": "function",
+            "name": "fetchListings",
+            "static": true,
+            "location": "pages/api/listings-api.js:11"
+          },
+          {
+            "type": "function",
+            "name": "fetchByListAgent",
+            "static": true,
+            "location": "pages/api/listings-api.js:12"
+          },
+          {
+            "type": "function",
+            "name": "fetchByCoListAgent",
+            "static": true,
+            "location": "pages/api/listings-api.js:27"
+          },
+          {
+            "type": "function",
+            "name": "handler",
+            "static": true,
+            "location": "pages/api/listings-api.js:75"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /api/listings-api"
+      }
+    ]
+  },
+  {
+    "type": "external-service",
+    "name": "dynamodb.us-east-1.amazonaws.com",
+    "children": [
+      {
+        "type": "external-route",
+        "name": "POST https://dynamodb.us-east-1.amazonaws.com/"
+      }
+    ]
+  }
+]

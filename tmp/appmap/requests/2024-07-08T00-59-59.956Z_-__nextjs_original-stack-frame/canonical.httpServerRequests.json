@@ -1,0 +1,7 @@
+[
+  {
+    "route": "GET /__nextjs_original-stack-frame",
+    "parameters": "(isServer,isEdgeServer,isAppDirectory,errorMessage,file,methodName,arguments,lineNumber,column)",
+    "status": null
+  }
+]

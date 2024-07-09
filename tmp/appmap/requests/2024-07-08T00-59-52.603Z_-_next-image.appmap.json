@@ -1,0 +1,83 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/_next/image",
+        "request_method": "GET",
+        "headers": {
+          "Host": "localhost:3000",
+          "Connection": "keep-alive",
+          "Sec-Ch-Ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
+          "If-None-Match": "n-3HS83UNfzgt7P1yB14yYZBUMCt6rREOG5TyFbr62c=",
+          "Sec-Ch-Ua-Mobile": "?0",
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+          "Sec-Ch-Ua-Platform": "\"macOS\"",
+          "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+          "Sec-Fetch-Site": "same-origin",
+          "Sec-Fetch-Mode": "no-cors",
+          "Sec-Fetch-Dest": "image",
+          "Referer": "http://localhost:3000/sold-listings",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "en-US,en;q=0.9"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "url",
+          "value": "'/images/realtor-eho-logo.jpg'",
+          "class": "String"
+        },
+        {
+          "name": "w",
+          "value": "'128'",
+          "class": "String"
+        },
+        {
+          "name": "q",
+          "value": "'75'",
+          "class": "String"
+        }
+      ]
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 1
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.23.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v20.9.0"
+    },
+    "app": "fab",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "GET /_next/image (304) — 2024-07-08T00:59:52.601Z"
+  },
+  "classMap": [
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /_next/image"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "caller": "HTTP server requests",
+    "callee": "api"
+  },
+  {
+    "caller": "dynamodb.us-east-1.amazonaws.com",
+    "callee": "HTTP server requests"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "caller": "GET /api/sold-route",
+    "callee": "api/sold-route"
+  },
+  {
+    "caller": "POST https://dynamodb.us-east-1.amazonaws.com/",
+    "callee": "GET /api/sold-route"
+  }
+]

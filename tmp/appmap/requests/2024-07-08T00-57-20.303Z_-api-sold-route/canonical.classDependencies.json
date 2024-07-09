@@ -1,0 +1,6 @@
+[
+  {
+    "caller": "GET /api/sold-route",
+    "callee": "api/sold-route"
+  }
+]

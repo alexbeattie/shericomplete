@@ -1,0 +1,48 @@
+[
+  {
+    "name": "api",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "sold-route",
+        "children": [
+          {
+            "type": "function",
+            "name": "handler",
+            "static": true,
+            "location": "pages/api/sold-route.js:107"
+          },
+          {
+            "type": "function",
+            "name": "fetchClosedListings",
+            "static": true,
+            "location": "pages/api/sold-route.js:12"
+          },
+          {
+            "type": "function",
+            "name": "fetchByListAgent",
+            "static": true,
+            "location": "pages/api/sold-route.js:26"
+          },
+          {
+            "type": "function",
+            "name": "fetchByCoListAgent",
+            "static": true,
+            "location": "pages/api/sold-route.js:54"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /api/sold-route"
+      }
+    ]
+  }
+]

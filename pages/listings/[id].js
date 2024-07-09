@@ -130,10 +130,13 @@ const ListingDetailPage = () => {
                 <p className="text-lg text-slate-500 mt-2 font-fourth">
                   {listing.MlsStatus}
                 </p>
+               {/* // Add conditional in case coList doesnt exist   */}
+                {listing.ListAgentFullName && listing.CoListAgentFullName ? (
                 <p className="text-lg text-slate-500 mt-2 font-fourth">
                   {listing.ListAgentFullName} & {listing.CoListAgentFullName}
-                </p>
+                  </p>) : null}
               </div>
+              
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="font-fourth text-gray-700 lg:overflow-y-auto lg:max-h-96">
                   <p>{insertLineBreaks(listing.PublicRemarks, 3, 'text-gray-600 mb-4')}</p>

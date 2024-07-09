@@ -1,0 +1,549 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/api/listings-api",
+        "request_method": "GET",
+        "headers": {
+          "Host": "localhost:3000",
+          "Connection": "keep-alive",
+          "Sec-Ch-Ua": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"",
+          "Accept": "application/json, text/plain, */*",
+          "Sec-Ch-Ua-Mobile": "?0",
+          "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+          "Sec-Ch-Ua-Platform": "\"macOS\"",
+          "Sec-Fetch-Site": "same-origin",
+          "Sec-Fetch-Mode": "cors",
+          "Sec-Fetch-Dest": "empty",
+          "Referer": "http://localhost:3000/sold-listings",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Accept-Language": "en-US,en;q=0.9"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "statuses",
+          "value": "'Closed'",
+          "class": "String"
+        },
+        {
+          "name": "agents",
+          "value": "'Sheri Skora,Kristin Leon,Connie Redman'",
+          "class": "String"
+        }
+      ]
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "handler",
+      "static": true,
+      "parameters": [
+        {
+          "class": "IncomingMessage",
+          "value": "[IncomingMessage: GET /api/listings-api?statuses=Closed&agents=Sheri%20Skora,Kristin%20Leon,Connie%20Redman]",
+          "object_id": 84,
+          "name": "req"
+        },
+        {
+          "class": "ServerResponse",
+          "value": "[ServerResponse: 200]",
+          "object_id": 85,
+          "name": "res"
+        }
+      ],
+      "defined_class": "listings-api",
+      "path": "pages/api/listings-api.js",
+      "lineno": 75
+    },
+    {
+      "event": "call",
+      "id": 3,
+      "thread_id": 0,
+      "method_id": "fetchListings",
+      "static": true,
+      "parameters": [
+        {
+          "class": "Array",
+          "items": {
+            "class": "String"
+          },
+          "value": "[ 'Sheri Skora', 'Kristin Leon', 'Connie Redman' ]",
+          "size": 3,
+          "object_id": 86,
+          "name": "agents"
+        },
+        {
+          "class": "Array",
+          "items": {
+            "class": "String"
+          },
+          "value": "[ 'Closed' ]",
+          "size": 1,
+          "object_id": 87,
+          "name": "statuses"
+        },
+        {
+          "class": "String",
+          "value": "'2022-01-01T15:10:07.903Z'",
+          "name": "dateToSearchBefore"
+        }
+      ],
+      "defined_class": "listings-api",
+      "path": "pages/api/listings-api.js",
+      "lineno": 11
+    },
+    {
+      "event": "call",
+      "id": 4,
+      "thread_id": 0,
+      "method_id": "fetchByListAgent",
+      "static": true,
+      "defined_class": "listings-api",
+      "path": "pages/api/listings-api.js",
+      "lineno": 12
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 5,
+      "parent_id": 4,
+      "elapsed": 0.5051312090363353,
+      "exceptions": [
+        {
+          "class": "SyntaxError",
+          "message": "Unexpected token 's', \"s/MFR69083\"... is not valid JSON\n  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.",
+          "object_id": 92
+        }
+      ],
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <rejected> }",
+        "object_id": 88
+      }
+    },
+    {
+      "event": "call",
+      "id": 6,
+      "thread_id": 0,
+      "method_id": "fetchByCoListAgent",
+      "static": true,
+      "defined_class": "listings-api",
+      "path": "pages/api/listings-api.js",
+      "lineno": 27
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 7,
+      "parent_id": 6,
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <pending> }",
+        "object_id": 89
+      },
+      "elapsed": 0.00009354203939437866
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 8,
+      "parent_id": 3,
+      "elapsed": 0.5052009169012308,
+      "exceptions": [
+        {
+          "class": "SyntaxError",
+          "message": "Unexpected token 's', \"s/MFR69083\"... is not valid JSON\n  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.",
+          "object_id": 92
+        }
+      ],
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <rejected> }",
+        "object_id": 90
+      }
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 9,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<undefined>",
+        "value": "Promise { undefined }",
+        "object_id": 91
+      },
+      "elapsed": 0.5059569999575615
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "322",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "b9e80d3f-8da2-4851-ab0d-49829badaa4a",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "c0355e86091a032158fb184ad12ebfe4853ea1dc3cda6772dfc8f6a599505b2b",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=7122b76fcbbe13dc7cdb65a6c50a804555227ffe90553c613e8be3660e152527"
+        }
+      },
+      "id": 10,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "423",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "604e6ac7-a2ea-424a-9312-11f5045738c1",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "02217d08994228ecdbda356bf94f593be343468fcb655ac336f29a214a1b5939",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=65ae2586c246251a24b25231173348b98a013db8570d714e5a8a88eb4a6d2ac5"
+        }
+      },
+      "id": 11,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "321",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "e4e4dd38-8775-41d5-8259-8ccc0e436ef3",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "23fcf9492848c8ce92ee7d1e5405a905b8167cfe589ea526897068d523c3befc",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=ba7fc907072e4d679d2821daccd3c5f85e3f5626e0f72ea4afa125b898883733"
+        }
+      },
+      "id": 12,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "323",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "5f261927-b8e5-4813-9fde-7d1469646b59",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "2270fec8234822a20808ec9027b8c95658335d90b33b312f485abcc4d37aedda",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=a895f74abf08eba11f4b3190927a89511f9b50ea19318bdcb5fc4d24fcbad23a"
+        }
+      },
+      "id": 13,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "UCBLD1T960AL0N9P4EM4839R4BVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 14,
+      "thread_id": 0,
+      "parent_id": 11,
+      "elapsed": 0.25435658381320536
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "424",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "999f4de8-5e33-44a0-8460-d764e1d94374",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "6fc7461a8230debe4cdaff5955ada36d6f277ef6130003737d90c7ee298975c9",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=03b3192868cc4b1925e68fcaca15f980d4c138ea4ea875762cf17211486bd30a"
+        }
+      },
+      "id": 15,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "SEPI965T01QOOEM6AUCUT7A4C7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3530536553"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":1}"
+        }
+      },
+      "id": 16,
+      "thread_id": 0,
+      "parent_id": 15,
+      "elapsed": 0.08374416711740196
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "423",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "397eb3fd-4ed9-49d0-bd31-ddef484eb230",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005952Z",
+          "X-Amz-Content-Sha256": "d4b78567cb06c9df56d05be5e49410c477526d65adf4f38a884c1b8880ddf9af",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=8660c8032de8c15301d9ea9f748dee5848b9e364ae5a0a62ae0d9323c03fc638"
+        }
+      },
+      "id": 17,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "F4ETCHPT90OCGHT3S1230OKL2FVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3219851148"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":12}"
+        }
+      },
+      "id": 18,
+      "thread_id": 0,
+      "parent_id": 17,
+      "elapsed": 0.08478850009851158
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "425",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "245919a7-d58b-4b2c-9170-7c5868b43fff",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005953Z",
+          "X-Amz-Content-Sha256": "60ad6a01dab5c72bd1fb000928acd6bf0715219c237f36fc1f9a343b9411a5c0",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=be9ba8aae8d0b569b531937147f17eedd2abe96cf2bdb5b8dbe0d0b924226e4c"
+        }
+      },
+      "id": 19,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "106225",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "DRJERUUPOJ4HAPA826VJLE26QFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2827536398"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":6,\"Items\":[{\"ListAgentKey\":{\"S\":\"MFR208655704\"},\"Zoning\":{\"S\":\"RS-75\"},\"ListAgentPager\":{\"S\":\"727-501-6516\"},\"Fencing\":{\"L\":[{\"S\":\"Fenced\"}]},\"NewConstructionYN\":{\"BOOL\":false},\"CoBuyerAgentFullName\":{\"S\":\"Sheri Skora\"},\"CoListOfficeMlsId\":{\"S\":\"MFR261558857\"},\"StatusChangeTimestamp\":{\"S\":\"2023-07-25T14:12:55.000Z\"},\"BuyerAgentMlsId\":{\"S\":\"MFR260043720\"},\"CumulativeDaysOnMarket\":{\"N\":\"1\"},\"MFR_ExistLseTenantYN\":{\"S\":\"0\"},\"OnMarketDate\":{\"S\":\"2023-06-01\"},\"MFR_WaterExtrasYN\":{\"S\":\"0\"},\"MFR_DPRYN\":{\"S\":\"0\"},\"Sewer\":{\"L\":[{\"S\":\"Public Sewer\"}]},\"MFR_TotalAnnualFees\":{\"S\":\"0.00\"},\"ListOfficePhone\":{\"S\":\"727-493-1555\"},\"BuyerAgentFullName\":{\"S\":\"Kristin Leon\"},\"BuildingAreaTotal\":{\"N\":\"2384\"},\"MFR_SDEOYN\":{\"S\":\"0\"},\"InternetAddressDisplayYN\":{\"BOOL\":true},\"MFR_MinimumLease\":{\"S\":\"No Minimum\"},\"CloseDate\":{\"S\":\"2023-07-24\"},\"MFR_RATIO_ClosePrice_By_OriginalListPrice\":{\"S\":\"0.95890\"},\"MFR_LeaseRestrictionsYN\":{\"S\":\"0\"},\"MFR_BackupsRequestedYN\":{\"S\":\"1\"},\"Heating\":{\"L\":[{\"S\":\"Central\"}]},\"MFR_ExpectedClosingDate\":{\"S\":\"2023-07-31T00:00:00.000\"},\"PublicRemarks\":{\"S\":\"BEAUTIFULLY UPDATED HOME IN SOUTH TAMPA neighborhood offers an abundance of room for living, and entertaining, thanks to a large lot encompassing lots of green space.  This inviting four bedroom, two bathroom residence rests on a 70 x 131 foot lot featuring a tall shade tree and low lying shrubs. The back of the house opens onto a fully screened in paved patio that is partially covered so that residents and guests can comfortably gather outdoors year round.  Wood columns accent the carport located at the end of a paved driveway while pavers provide a path to the covered front porch that has ample room for chairs plus a table.  The open floor plan sports new flooring throughout as well as new windows and sliders that fill the living and dining areas and fully updated kitchen with lots of natural light. An entryway large enough to fit a couch provides views all the way through to the big backyard.  Wide archways frame rooms highlighted by white walls and brightened by recessed lights, creating a decor that feels fresh and looks polished. Custom touches like the built-in shelves in the living and dining rooms and the luxury laminate that defines the kitchen countertops, breakfast bar and backsplash as well as the shower walls add an elevated look to the lovely interior.  The primary bedroom’s ensuite bathroom is separated by a sliding barn door that opens to a double sink vanity plus a walk-in, glass-enclosed shower. A large laundry room, abundant closet, cabinet and storage space and stainless steel appliances create a living space with loads of appeal.  Located within the Westshore/Beach Park area, Tampa International Airport is only a short drive away. The Howard Frankland Bridge connecting Tampa to the St. Petersburg/Clearwater communities and world famous west coast beaches is nearby. Professional sports fields, major shopping malls, outstanding museums and concert venues hosting headlining entertainment are all within close proximity.  Westshore is also a dining destination that offers fine dining to fast casual restaurants as well as multi-cultural cuisines and craft breweries. Gated communities and waterfront homes comprise much of the surrounding neighborhoods with many streets well suited for walking or biking.\"},\"Roof\":{\"L\":[{\"S\":\"Shingle\"}]},\"Media\":{\"S\":\"https://s3.amazonaws.com/mlsgrid/images/MFR690835963/1d3bc3de-a199-4f4c-a977-e21d53359574.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/c34da50c-20fe-4a6a-8e2e-f6674f5f46af.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/b4f29b5f-9866-4e33-96ab-306403ab923f.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/fedbcff3-c1f1-456d-9ebb-088a0cc3a567.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/94dff157-c0f1-4d14-8607-acda7826097c.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/063dc814-dd0b-449e-8ffd-58fc72aed756.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ff5d310d-0f35-48c9-86bd-37aa79744854.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/aad08dd7-b5fc-4497-a6d8-3335d6658c2e.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/e963fb23-6b6f-4b14-814b-8257e2194335.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/a02cf481-f1d6-4627-a7e8-50ed57aaa52a.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/fdb40e99-0ccd-4f29-9273-7bba91d8a6d6.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/6d2e2cb9-5d2c-4a34-b394-4b73c5a633de.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/99fcf3c7-badc-4a11-a8e1-72c4ae1bae43.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/5f55901e-86fe-4827-9e72-c6c3a735e4b4.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/704f96b9-6592-41ae-a0db-f3a57a5e96e6.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/a5baeb39-7416-425a-a037-e0eb98f61325.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/72fb4677-5569-45a6-bc15-f14712a7c35f.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/118619ae-3066-455b-8662-dc338043490e.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/bb838a5f-6fc4-4ab7-bd8f-e29c5443c870.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/00c8547e-5fbf-4713-a45d-078455996945.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/f153118d-9cb5-4fc6-a92c-167c20412119.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/8fa9f052-fdc7-4403-a4ab-4c90deaeacae.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/8c701221-3843-4e46-8973-c0c8359f804d.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/b34e3712-dcce-45e6-a5ee-7d9f430c1370.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ebd77368-f8bc-4956-aaf1-17b2a1c10e24.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/9a598e14-a23e-4582-8a3b-0548aa195729.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/c7cbf17c-57d2-4b3c-92e8-6de4508f6e8b.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ace07fc1-b786-4a87-96ff-762bb2a594e3.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/e21b859f-9ccd-4b21-8d2b-2db8982593b4.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/e1c8bc5e-3840-49e7-95dd-ef1bc401ff90.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/c64c75fb-eb4e-450c-aa06-4a08c9b16df0.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/d359dede-97a9-4bbf-91fb-606be6586a73.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ff534ad5-a852-470f-9f36-fb91df61db68.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/f3d1217e-9ee1-4e83-b627-41ab8ff350b9.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/6f2fd61d-20d2-4f25-aaca-2d730bbc54a4.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/4f76fc18-595c-4ff1-b55f-51d8d1936575.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/d9b952b2-9420-4db7-a903-49510c88842b.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/cfc0d884-4c1d-471a-bedf-0c959264f718.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/016dd353-94c3-4a6c-97c5-98565130121e.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/80e37b17-fd94-4e89-91db-34ac3bb16955.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/2ab89915-a043-4c30-b3e2-ae529055c3bd.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/fd0b30d6-8852-49c1-bf29-8ba166bcc5e1.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/bea2b4e4-950c-4d41-837b-53f14b0c7b55.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/990632cd-970b-4187-84ef-bfc250b6dfe7.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ebdfd734-782b-47d2-b90c-4dec1d3e6983.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/26bcd057-fcaf-48fc-9db0-1e62e2240ed2.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/ff5ac49f-d8e3-4014-b3e3-c1cb63b71a25.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/7dc792be-b933-4990-876e-b17dd622ebc6.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/24001ed6-9491-48fd-9d01-250aec7d582f.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/e78f32ee-da8a-41aa-99bc-ddb1cbc8f46a.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/11ed5848-257c-4d18-a416-19edd18f6ccd.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/6d1e1b6a-fd8e-44a1-a8ba-221e1f3edd41.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/c049e592-7e41-43e3-a881-806f92dff096.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR690835963/fd8a808d-b01a-44ad-9e64-03e3927b43cf.jpeg\"},\"MFR_ClosePriceByCalculatedListPriceRatio\":{\"S\":\"0.96\"},\"ListingAgreement\":{\"S\":\"Exclusive Right To Sell\"},\"SpecialListingConditions\":{\"L\":[{\"S\":\"None\"}]},\"MFR_YrsOfOwnerPriorToLeasingReqYN\":{\"S\":\"0\"},\"StreetDirPrefix\":{\"S\":\"S\"},\"LivingAreaUnits\":{\"S\":\"Square Feet\"},\"MFR_EscrowStreetName\":{\"S\":\"GULF BLVD SUITE 101\"},\"OriginatingSystemKey\":{\"S\":\"690835963\"},\"MFR_EscrowPostalCode\":{\"S\":\"33785\"},\"Country\":{\"S\":\"US\"},\"ListAgentAOR\":{\"S\":\"Pinellas Suncoast\"},\"MLSAreaMajor\":{\"S\":\"33609 - Tampa / Palma Ceia\"},\"TransactionBrokerCompensation\":{\"S\":\"2.5%-$395\"},\"PhotosChangeTimestamp\":{\"S\":\"2023-06-01T15:04:09.261Z\"},\"MFR_PreviousStatus\":{\"S\":\"Pending\"},\"MFR_ListOfficeContactPreferred\":{\"S\":\"727-493-1555\"},\"MFR_Association2YN\":{\"S\":\"0\"},\"ArchitecturalStyle\":{\"L\":[{\"S\":\"Ranch\"}]},\"BuyerOfficeMlsId\":{\"S\":\"MFR260031031\"},\"ListAgentDirectPhone\":{\"S\":\"727-501-6516\"},\"MFR_RATIO_ClosePrice_By_ListPrice\":{\"S\":\"0.95890\"},\"ListAgentFullName\":{\"S\":\"Kristin Leon\"},\"MFR_EscrowState\":{\"S\":\"FL\"},\"ListOfficeKey\":{\"S\":\"MFR1039408\"},\"CoListAgentMlsId\":{\"S\":\"MFR261558651\"},\"TaxBookNumber\":{\"S\":\"16-27\"},\"Levels\":{\"L\":[{\"S\":\"One\"}]},\"Appliances\":{\"L\":[{\"S\":\"Dishwasher\"},{\"S\":\"Disposal\"},{\"S\":\"Microwave\"},{\"S\":\"Range\"},{\"S\":\"Refrigerator\"}]},\"SeniorCommunityYN\":{\"BOOL\":false},\"BuyerAgencyCompensation\":{\"S\":\"2.5%-$395\"},\"CoBuyerAgentMlsId\":{\"S\":\"MFR261558651\"},\"CoListAgentFullName\":{\"S\":\"Sheri Skora\"},\"GarageYN\":{\"BOOL\":false},\"MFR_Con... (96225 more characters)"
+        }
+      },
+      "id": 20,
+      "thread_id": 0,
+      "parent_id": 10,
+      "elapsed": 0.49713641591370106
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 500,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Etag": "\"12jeyr8gn9v10\"",
+          "Content-Length": "36",
+          "Vary": "Accept-Encoding"
+        },
+        "return_value": {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "error",
+              "class": "String"
+            }
+          ],
+          "value": "{ error: 'Failed to fetch listings' }",
+          "object_id": 93
+        }
+      },
+      "id": 21,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.5237423749640584
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 19
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 13
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 12
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.23.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v20.9.0"
+    },
+    "app": "fab",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "GET /api/listings-api (500) — 2024-07-08T00:59:52.624Z"
+  },
+  "classMap": [
+    {
+      "name": "api",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "listings-api",
+          "children": [
+            {
+              "type": "function",
+              "name": "fetchListings",
+              "static": true,
+              "location": "pages/api/listings-api.js:11"
+            },
+            {
+              "type": "function",
+              "name": "fetchByListAgent",
+              "static": true,
+              "location": "pages/api/listings-api.js:12"
+            },
+            {
+              "type": "function",
+              "name": "fetchByCoListAgent",
+              "static": true,
+              "location": "pages/api/listings-api.js:27"
+            },
+            {
+              "type": "function",
+              "name": "handler",
+              "static": true,
+              "location": "pages/api/listings-api.js:75"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /api/listings-api"
+        }
+      ]
+    },
+    {
+      "type": "external-service",
+      "name": "dynamodb.us-east-1.amazonaws.com",
+      "children": [
+        {
+          "type": "external-route",
+          "name": "POST https://dynamodb.us-east-1.amazonaws.com/"
+        }
+      ]
+    }
+  ]
+}

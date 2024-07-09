@@ -1,0 +1,7 @@
+[
+  {
+    "route": "GET /api/listings",
+    "parameters": "()",
+    "status": 500
+  }
+]

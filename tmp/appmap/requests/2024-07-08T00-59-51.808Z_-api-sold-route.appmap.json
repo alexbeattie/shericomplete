@@ -1,0 +1,1546 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/api/sold-route",
+        "request_method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "User-Agent": "axios/1.7.2",
+          "Accept-Encoding": "gzip, compress, deflate, br",
+          "Host": "localhost:3000",
+          "Connection": "keep-alive"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "handler",
+      "static": true,
+      "parameters": [
+        {
+          "class": "IncomingMessage",
+          "value": "[IncomingMessage: GET /api/sold-route]",
+          "object_id": 51,
+          "name": "req"
+        },
+        {
+          "class": "ServerResponse",
+          "value": "[ServerResponse: 200]",
+          "object_id": 52,
+          "name": "res"
+        }
+      ],
+      "defined_class": "sold-route",
+      "path": "pages/api/sold-route.js",
+      "lineno": 107
+    },
+    {
+      "event": "call",
+      "id": 3,
+      "thread_id": 0,
+      "method_id": "fetchClosedListings",
+      "static": true,
+      "defined_class": "sold-route",
+      "path": "pages/api/sold-route.js",
+      "lineno": 12
+    },
+    {
+      "event": "call",
+      "id": 4,
+      "thread_id": 0,
+      "method_id": "fetchByListAgent",
+      "static": true,
+      "defined_class": "sold-route",
+      "path": "pages/api/sold-route.js",
+      "lineno": 26
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 5,
+      "parent_id": 4,
+      "elapsed": 0.4314424581825733,
+      "exceptions": [
+        {
+          "class": "SyntaxError",
+          "message": "Unexpected token 'g', \"ges/MFR721\"... is not valid JSON\n  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.",
+          "object_id": 57
+        }
+      ],
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <rejected> }",
+        "object_id": 53
+      }
+    },
+    {
+      "event": "call",
+      "id": 6,
+      "thread_id": 0,
+      "method_id": "fetchByCoListAgent",
+      "static": true,
+      "defined_class": "sold-route",
+      "path": "pages/api/sold-route.js",
+      "lineno": 54
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 7,
+      "parent_id": 6,
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <pending> }",
+        "object_id": 54
+      },
+      "elapsed": 0.0001385000068694353
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 8,
+      "parent_id": 3,
+      "elapsed": 0.4315939999651164,
+      "exceptions": [
+        {
+          "class": "SyntaxError",
+          "message": "Unexpected token 'g', \"ges/MFR721\"... is not valid JSON\n  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.",
+          "object_id": 57
+        }
+      ],
+      "return_value": {
+        "class": "Promise",
+        "value": "Promise { <rejected> }",
+        "object_id": 55
+      }
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 9,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<undefined>",
+        "value": "Promise { undefined }",
+        "object_id": 56
+      },
+      "elapsed": 0.43251245794817805
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "efcf06f9-edbe-4bf0-8de7-4a79cd28a000",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "d1b78823ad337c8ed1e3d23428898fcbc51022d8f7fd3634af7cf8b1d0640c26",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=f25a1b45388858884a5fa68bc3b5d759a6b0e82111fd9a562789e4132a95c57b"
+        }
+      },
+      "id": 10,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "312",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "004d8287-e857-4d4a-b6e7-2d875f6dacbf",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "b26ff291279bedee9afb55c1a0341dd068fbbd237f21ea057399abd63cbfc89a",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=7e27b5927d3cf210f44d5c0c221ce8cf78a6a8cb327e7cd58370ef8c78a682cc"
+        }
+      },
+      "id": 11,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "24ba12f5-1d94-476c-8265-462d14a3ab56",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "59fdb56c3d03299e8e220b521d35fd3eac1386dd4acffe7f6ae0ed4785ee9d13",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=1be323451152ceba045e56064a7e2f46f20c878a0b72d051a7c201d2355c8ab5"
+        }
+      },
+      "id": 12,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "ea7a998c-6139-402a-b4e7-0b8431460528",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "2e70a695ce0161045bfdb48c14559a0eb9a42ed5d063d9ff53a4ac8e84d7b801",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=892dfaae035fdffa3905a733d94d82147e975b16c9d037264cb4bb0980d3b341"
+        }
+      },
+      "id": 13,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "f798f5fe-6a9a-4ca6-8cd0-51af84058769",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "649d02d9e73df0ea2cb2d11c60214260a6f5c6c40328a49804e7a8e9daeb6c33",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=782db445546a35589ee5b86fcb4f793ab7b806126e3bc35616565c5ffbcb58dc"
+        }
+      },
+      "id": 14,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "b26e205d-1d95-421a-a4ca-ef5a7bbea190",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "1deac22f868d3dbb13a87ea2bc1411b98f59ef6d0882e7cd4a254d3cde1b2044",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=3f42da0b7488310f04b64c4a7f267635c1d30c39fc6fceaa0c4e43c760d5d3f1"
+        }
+      },
+      "id": 15,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "312",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "425e8da8-b518-40b2-8b3c-8c03d9972574",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "326bea35c53e9a20674bf9439ef23f9a369eceb39158d6d2e1d39e79f5f3478c",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=cd395f75bc99e7a365b771cb2cb62a22c7402d0a8d9aa76c3aba29517a4cdbde"
+        }
+      },
+      "id": 16,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "a27dd9ef-a324-4826-9a6b-625a70a7d4c0",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "e07e1dcb2118250b272b73a065e254f9a1308e376c8a205a2061941e1859d9fd",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=dc743aacc6ce4dc068f64ce82bcf90f06ef72f4840857db9730098155642abdd"
+        }
+      },
+      "id": 17,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "680b4299-adf2-4a93-811f-2e7a7e758794",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "1a85b6cb8740fe24ebbac9aa62f07fce449e7779b819b29b8d2bf8d04d3e8e3d",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=f7dd8b70068316f52783dfb0d90345abd8623244ef8fee5006d4bc0265381172"
+        }
+      },
+      "id": 18,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "2f7c94f1-7663-4411-b7ed-82d8a9e212f3",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "edb0b6d6476976dc3a8bc74c94848de763d8f18ba221fa8115cf620c5655617c",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=ebbf53bf20645c4b3e122fc24b26d109346a137c8f43e7f8ed2f8abcc66f6da2"
+        }
+      },
+      "id": 19,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "359f28a5-c244-48af-96f0-0da5d3429f8b",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "1125f21a1b255d999d9b051d0d1d68de9beda56ecc37dee5cc7f438ea1260a18",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=212137b4e08226cff78f2537e9a98b9e821f07a2566b9d29118dbd975004c618"
+        }
+      },
+      "id": 20,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "9363e2b2-71f5-44a7-a825-c771d8978344",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "6e6f5724932fbbb6fe571b017af14b855e30b2c0e931b46f6a2fbf63b7633989",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=42cb7d915de57498c8f043ecf9965ca76d702780317239dc8467d708963b4f24"
+        }
+      },
+      "id": 21,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "70218e6d-9b02-4f50-8744-a00ac756a78f",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "db31b748c3981e610c1e3d0c7a915412f5b05fa8f40106a00f739f24fbe70b13",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=e5da9ca491bfc892bf276917d99f36517ed15dbb075722b14e65e060aaab60e8"
+        }
+      },
+      "id": 22,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "2135b234-875c-4906-9fe7-5e6c2a2b8b6c",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "f941fe9c6a2b2d1e9547716361a248e9a0290cbe08f3670f208548a4f31e55bb",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=34fa7a6e09156811044e75c2ef8c3a447a6c56204a9e7d6591cbd1ef6366fab3"
+        }
+      },
+      "id": 23,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "88bbd918-325f-4d7b-ad93-d250ba2303a8",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "affef145c9d3ece1a38835673b562cbf7da34532272851406cadb85e1fb4ab63",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=81ac1036efb8ddbcc3fe0901e5f6fddfa3ba3c14009fc1f94b1907ca46a9300f"
+        }
+      },
+      "id": 24,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "fe538e75-7bd7-4a27-b37e-dd5a01bdd6a6",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "a45c244d5430a060ae9cc939142cd793d81f86d6fc878cab514b4f31aa53b8f1",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=8603d4fb58487097db27af273416ad5f6dcc1b3482671af2b373ba6631e520d6"
+        }
+      },
+      "id": 25,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "313",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "f4d54756-dfec-4a50-9b94-3461f02c0396",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "e54e1c6006e84d675842525c580b6fb720747fa6b38d5fdd877c23506e9e4e1b",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=562af48f8aac0413d971b9459577af463bbf85b03c6a793ecf088ac91ad81556"
+        }
+      },
+      "id": 26,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "787fe0da-a7f8-460e-958d-4423b8c9f1f6",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "38c6dc825f72edc8d5d381ebdeb7977b28e96043c2e87bd3ebc156eefb4657b9",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=daff6d0dab4b23b34d3941c9c6c7a0601b6ed6e1830f2bfd3b433a73af07df46"
+        }
+      },
+      "id": 27,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "9d0a81d3-97e2-41fc-91e3-c432b968660d",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "067b03a02a87706fb7f1e40f06689d7c449b4c87ba5b8eaa3e5aed7c28dd6004",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=13e04c44f634a844b82ac29d2a3005f7170c07b4027c4f8793be96b6bed67936"
+        }
+      },
+      "id": 28,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "0d0fc0aa-27a0-453b-a4d4-e9199428fcba",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "aa59a891db4eb01fd88ca5f7440542595b000d1064b2249ae5356b83d7d82b9f",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=bb09128c521a239a157cc747a66998f6f902ad62c35e8322297e8c10b8ea3879"
+        }
+      },
+      "id": 29,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "316",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "95b460f4-314d-4261-b1b7-fa1d14562fc5",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "e0095e2bc950e18e6bc922d49a5aae8d661f4530005fb3deb4b976f5b58c5eee",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=00dcd3b804aca85ef5d1c14f4644bf9fd2ef83cfadc52e3f7947b6f59ba11b85"
+        }
+      },
+      "id": 30,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "6cd8e182-def2-4f26-b9dd-9135b85a1115",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "dbe3cf0b3734e1f7732f7857f2e94c894088ca58636ac18fb0934dfa8804d6b7",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=1fbb638fe4967443e8299bf8a57613f4836f6085518e193294078a71548f948f"
+        }
+      },
+      "id": 31,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "fdc3b7a6-268e-409d-a724-387581c874e9",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "44fde0d023f169a1db15b178aee7b48da48b1f7cd725abd32aa32bd2805cc416",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=b2c4f0afa657d82bba80cbefebeb255ec806ffd40e8dd68f635bd6c79c6e8774"
+        }
+      },
+      "id": 32,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "333",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "6bcebb07-a250-49a8-b51e-0b9ffce9e15b",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "bf7dd0a0302b42f90c070386389fc98f2e46c50c31f8b4e48ef8b5027c1d3cbd",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=ba761d5e848deae7d6da85edcf33feb3e81740f4d907f000091257ddbf257fb0"
+        }
+      },
+      "id": 33,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "316",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "23607c25-55cb-4f2b-9ea2-1066760581e3",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "0f1ab8c8bc7710707d9cacca4b311097de49104c78daeefb8d8f0859ceb31224",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=1a9c04adb7f3f7287c9b2d0ffd26e735a12374e41f1111d53115072defcfca4c"
+        }
+      },
+      "id": 34,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "316",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "d69c06fc-bac7-4a57-a41b-c7bf71f735d9",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "35372383f297f27ada692cc0c13d87954406265b0c172c72898f2156d08dac4d",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=9d177ef46349edd61c6330028a741eb8631528b2a95c6c0480e81d0ab4d24461"
+        }
+      },
+      "id": 35,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "5c5de249-6696-4525-99b4-9361341f69b0",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "1e0ad06c6f095499873fab8ca994f5c1b0eeb7bb615b04a0f3f7ac65c661ca4d",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=c577c175aed98f0ec34d2136d604b8c1d2307c232ef9660f1d5082317fca9f09"
+        }
+      },
+      "id": 36,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "315",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "54f7cdd3-f1a7-4fb5-84da-ce2ad57168c5",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "4003801f2c8efa5bfa993d6d565437ab3a2b805547aa29a9690356614a13f6a8",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=50ff452c2596773acfb1ed6be68d822b1eb675abf6197032f9afe7d64729ced5"
+        }
+      },
+      "id": 37,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "2099fbb9-9ba3-45cc-933e-a7f8cd477477",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "ca1d4aeab01a665bb6d2b055a2a27aadb016903599874ab85015d2a38f1ae2f7",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=7543c871f920ce96dac0dc49dc93c9f0397609abeb2d54c53a220bcdfd879989"
+        }
+      },
+      "id": 38,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "316",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "759c33f2-2fd1-4d05-b890-74c62a49712a",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "53f95ec73e0524be2c58234f42c802c4b28cd1d6f6a7930b1006abd99bfe2c51",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=c69cae7e272db41a36342b5d20d9f8aac755b9a3ff09a61cc569a8f7dd364df5"
+        }
+      },
+      "id": 39,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "http_client_request": {
+        "request_method": "POST",
+        "url": "https://dynamodb.us-east-1.amazonaws.com/",
+        "headers": {
+          "Content-Type": "application/x-amz-json-1.0",
+          "X-Amz-Target": "DynamoDB_20120810.Query",
+          "Content-Length": "314",
+          "Host": "dynamodb.us-east-1.amazonaws.com",
+          "X-Amz-User-Agent": "aws-sdk-js/3.592.0",
+          "User-Agent": "aws-sdk-js/3.592.0 ua/2.0 os/darwin#23.5.0 lang/js md/nodejs#20.9.0 api/dynamodb#3.592.0",
+          "Amz-Sdk-Invocation-Id": "0206b403-bfd7-4bf7-8006-1060641559b3",
+          "Amz-Sdk-Request": "attempt=1; max=3",
+          "X-Amz-Date": "20240708T005951Z",
+          "X-Amz-Content-Sha256": "a59a7f93ad4d401f799e48a584fb77c1708f0168d45b82a32c85af0ec92114c0",
+          "Authorization": "AWS4-HMAC-SHA256 Credential=AKIA3SOFI5WJEMZI6YIZ/20240708/us-east-1/dynamodb/aws4_request, SignedHeaders=amz-sdk-invocation-id;amz-sdk-request;content-length;content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target;x-amz-user-agent, Signature=52c9d9040aa91d7c5abb7706d8b302b0364a1ef62bd9000d824efd499a83ba83"
+        }
+      },
+      "id": 40,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:51 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "2E4KBQLLJU52NOD7EBEUGECFUNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3265065929"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":17}"
+        }
+      },
+      "id": 41,
+      "thread_id": 0,
+      "parent_id": 11,
+      "elapsed": 0.3183566250372678
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "P9LGNS2P349AUNN9700L8A1AB7VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3265065929"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":17}"
+        }
+      },
+      "id": 42,
+      "thread_id": 0,
+      "parent_id": 12,
+      "elapsed": 0.3262353749014437
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "5BQ1JH0O9O4TRMP06REPQ0DGRNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3265065929"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":17}"
+        }
+      },
+      "id": 43,
+      "thread_id": 0,
+      "parent_id": 14,
+      "elapsed": 0.3270107498392463
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "GQP1U8FA3U9VSV9GL0B1LBFEKVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3265065929"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":17}"
+        }
+      },
+      "id": 44,
+      "thread_id": 0,
+      "parent_id": 16,
+      "elapsed": 0.3344559168908745
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "1L7NT9I5OG06FVCT8O4DR687JJVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2775900835"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":33}"
+        }
+      },
+      "id": 45,
+      "thread_id": 0,
+      "parent_id": 17,
+      "elapsed": 0.3338069999590516
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "0K0Q66MLB766MJS6RUVSAUDG3RVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2775900835"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":33}"
+        }
+      },
+      "id": 46,
+      "thread_id": 0,
+      "parent_id": 23,
+      "elapsed": 0.33493320900015533
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "AOGTVKLBOMOBHMSRNPMGCHFF3BVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2637045934"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":6}"
+        }
+      },
+      "id": 47,
+      "thread_id": 0,
+      "parent_id": 20,
+      "elapsed": 0.3385779170785099
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "PFH09GBBT52NQRTAKM2F9TPR83VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2637045934"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":6}"
+        }
+      },
+      "id": 48,
+      "thread_id": 0,
+      "parent_id": 22,
+      "elapsed": 0.337715667206794
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "L6LO9DC2O00DK542NBC35ER37FVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 49,
+      "thread_id": 0,
+      "parent_id": 30,
+      "elapsed": 0.3412070421036333
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "AJU292G1GKVLIA9H3H27RL1RCFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2775900835"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":33}"
+        }
+      },
+      "id": 50,
+      "thread_id": 0,
+      "parent_id": 19,
+      "elapsed": 0.34563212492503226
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "QQ2F64K1NJ3V10RCPA873I7MANVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2637045934"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":6}"
+        }
+      },
+      "id": 51,
+      "thread_id": 0,
+      "parent_id": 24,
+      "elapsed": 0.3489870000630617
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "67V7DF0MGGP0MRK58M38MDHAQVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2637045934"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":6}"
+        }
+      },
+      "id": 52,
+      "thread_id": 0,
+      "parent_id": 26,
+      "elapsed": 0.34974512504413724
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "39",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "PUH6AKD3632GTS7F1SFE2C0D67VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2637045934"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":6}"
+        }
+      },
+      "id": 53,
+      "thread_id": 0,
+      "parent_id": 25,
+      "elapsed": 0.3491917918436229
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "2SRLUNRA8Q5AQNLINIFS9E875BVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2775900835"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":33}"
+        }
+      },
+      "id": 54,
+      "thread_id": 0,
+      "parent_id": 28,
+      "elapsed": 0.35347437486052513
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "U00PHBCOJ5E4161JIR57FHM6QFVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 55,
+      "thread_id": 0,
+      "parent_id": 36,
+      "elapsed": 0.35183287505060434
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "485203N2DGI1147FVMDV3904RNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 56,
+      "thread_id": 0,
+      "parent_id": 29,
+      "elapsed": 0.3516814580652863
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "ME8P3OO3HQQQI4VI75OKQ6E5D3VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 57,
+      "thread_id": 0,
+      "parent_id": 31,
+      "elapsed": 0.3509451251011342
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "CUTB5LHSIDF3MKJ01UKP5LT14RVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "2775900835"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":33}"
+        }
+      },
+      "id": 58,
+      "thread_id": 0,
+      "parent_id": 27,
+      "elapsed": 0.35693895793519914
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "40",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "H2VOVC9ENQVMUHF2T2PBTE7LGVVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3920732170"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"ScannedCount\":14}"
+        }
+      },
+      "id": 59,
+      "thread_id": 0,
+      "parent_id": 39,
+      "elapsed": 0.35241562500596046
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "GN58F6REBKH60LN4R0H62KQ503VV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 60,
+      "thread_id": 0,
+      "parent_id": 32,
+      "elapsed": 0.36169179202988744
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "J4IQ59JM6HC67KUSRHIQRSUJPNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 61,
+      "thread_id": 0,
+      "parent_id": 37,
+      "elapsed": 0.36284579196944833
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "93JHNFHUHAKKI86OSQG698JLDRVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 62,
+      "thread_id": 0,
+      "parent_id": 38,
+      "elapsed": 0.37129800021648407
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "HAIFBI6D5QP5QF6T8CSMBBJI4NVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 63,
+      "thread_id": 0,
+      "parent_id": 35,
+      "elapsed": 0.37201637495309114
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "HO3EJ1UAPJTAMF1R5MG7NUSSCNVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 64,
+      "thread_id": 0,
+      "parent_id": 40,
+      "elapsed": 0.3815463329665363
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:52 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "194",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "DC5D5RCROPIHSJ22QP59MTLFKRVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "3918185526"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":0,\"Items\":[],\"LastEvaluatedKey\":{\"ListingKey\":{\"S\":\"MFR545936099\"},\"ModificationTimestamp\":{\"S\":\"2023-01-18T01:37:09.090Z\"},\"ListAgentFullName\":{\"S\":\"Connie Redman\"}},\"ScannedCount\":85}"
+        }
+      },
+      "id": 65,
+      "thread_id": 0,
+      "parent_id": 34,
+      "elapsed": 0.4024805419612676
+    },
+    {
+      "event": "return",
+      "http_client_response": {
+        "status_code": 200,
+        "headers": {
+          "Server": "Server",
+          "Date": "Mon, 08 Jul 2024 00:59:51 GMT",
+          "Content-Type": "application/x-amz-json-1.0",
+          "Content-Length": "17451",
+          "Connection": "keep-alive",
+          "X-Amzn-Requestid": "IAJ4PE6S2KODQ452VTPMPJC3ORVV4KQNSO5AEMVJF66Q9ASUAAJG",
+          "X-Amz-Crc32": "1684617080"
+        },
+        "return_value": {
+          "class": "[ResponseBody]",
+          "value": "{\"Count\":1,\"Items\":[{\"ListAgentKey\":{\"S\":\"MFR684043876\"},\"Zoning\":{\"S\":\"PD\"},\"ListAgentPager\":{\"S\":\"813-767-7789\"},\"AssociationPhone\":{\"S\":\"(813) 642-8990\"},\"CommunityFeatures\":{\"L\":[{\"S\":\"Clubhouse\"},{\"S\":\"Deed Restrictions\"},{\"S\":\"Dog Park\"},{\"S\":\"Fitness Center\"},{\"S\":\"Gated Community - Guard\"},{\"S\":\"Golf Carts OK\"},{\"S\":\"Golf\"},{\"S\":\"Pool\"},{\"S\":\"Racquetball\"},{\"S\":\"Restaurant\"},{\"S\":\"Sidewalks\"},{\"S\":\"Tennis Courts\"}]},\"NewConstructionYN\":{\"BOOL\":false},\"StatusChangeTimestamp\":{\"S\":\"2024-06-12T17:00:28.000Z\"},\"CoListOfficeMlsId\":{\"S\":\"MFR260031031\"},\"BuyerAgentMlsId\":{\"S\":\"MFR261564615\"},\"MFR_MonthlyHOAAmount\":{\"S\":\"737.00\"},\"CumulativeDaysOnMarket\":{\"N\":\"50\"},\"MFR_ExistLseTenantYN\":{\"S\":\"0\"},\"OnMarketDate\":{\"S\":\"2024-04-02\"},\"MFR_WaterExtrasYN\":{\"S\":\"0\"},\"MFR_DPRYN\":{\"S\":\"1\"},\"Sewer\":{\"L\":[{\"S\":\"Public Sewer\"}]},\"MFR_TotalAnnualFees\":{\"S\":\"8844.00\"},\"BuyerAgentFullName\":{\"S\":\"Racquel Richards-Kelley\"},\"ListOfficePhone\":{\"S\":\"813-553-6869\"},\"BuildingAreaTotal\":{\"N\":\"2004\"},\"MFR_SDEOYN\":{\"S\":\"0\"},\"AssociationName\":{\"S\":\"First Service\"},\"InternetAddressDisplayYN\":{\"BOOL\":true},\"MFR_MinimumLease\":{\"S\":\"1 Month\"},\"CloseDate\":{\"S\":\"2024-06-12\"},\"MFR_RATIO_ClosePrice_By_OriginalListPrice\":{\"S\":\"0.83785\"},\"MFR_LeaseRestrictionsYN\":{\"S\":\"1\"},\"MFR_BackupsRequestedYN\":{\"S\":\"1\"},\"Heating\":{\"L\":[{\"S\":\"Central\"},{\"S\":\"Electric\"}]},\"MFR_ExpectedClosingDate\":{\"S\":\"2024-06-12T00:00:00.000\"},\"PublicRemarks\":{\"S\":\"PRICE REDUCTION! Make and offer on this 2/2 in Lancaster III and on a CORNER LOT! - Enjoy the carefree lifestyle in the GATED community of Kings Point!  This is a PET FRIENDLY LOCATION. A front screened porch greets you as you walk through the front door  … Perfect for your morning coffee! The living and dining spaces are open and allows for a comfortable space for daily living. There is a dinette/breakfast nook that is ideal for meals, casual seating or even an office! The split floor plan has the master bedroom located in the rear of the home with plenty of closets. The room is GRAND with windows that provide plenty of natural light! The en suite has dual sinks, and a WALK IN SHOWER! The second bedroom is located on the other side of the home with the bathroom adjacent to bedroom, making your guests more comfortable! Enjoy the Florida room with a wall of windows and space for so many options such as crafts, tv room, etc.  A BRAND NEW WATER HEATER was installed in October of 2023 and a like new garage screen that provides wonderful privacy awaits you in your spacious garage. KINGS POINT is a GOLF CART friendly, 55+ active community with over 200 clubs & activities, multiple indoor/outdoor pools, fitness, pickle ball, and so much more! Fees include cable, internet, exterior insurance, maintenance grounds, private road, security, water, trash, sewer & more! Location is close to restaurants, beaches, shopping and more!  If you plan on venturing out,  there is quick access to restaurants, SHOPPING, and beaches. Your are 30 minutes to Tampa International Airport, less than an hour to the Sarasota shops, and 20 minutes to the Ellenton Prime Outlets! Bedroom Closet Type: Built In Closet (Primary Bedroom).\"},\"Roof\":{\"L\":[{\"S\":\"Shingle\"}]},\"Media\":{\"S\":\"https://s3.amazonaws.com/mlsgrid/images/MFR721293347/f4dbfbc2-016f-4347-ac78-30886a2af00a.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/69e88ca2-ce4b-4a25-a92f-46d4897599ef.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/6abe4049-8bdd-4745-b960-2cf4821b0b21.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/9d7e068c-ceb9-4e8c-95ad-4315f5a7cea3.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/d90e903f-a506-4f5c-9d22-7beae3232b78.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/8cb0a2fb-918e-4714-b6ba-b688d459a57d.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/b77c85d7-ff02-49fe-be3f-4a4ce7161686.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/4ec390ad-c737-4da6-b43c-d9d51ae5e193.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/dae88766-66d3-4372-80dc-f15ba68da8d3.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/3d7fff31-8b1f-4c07-9365-90a10ebc7be3.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/38505e29-ad28-4b6c-bd4c-938dcf0a6d1e.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/b1964f9f-c2b1-4d8d-b44c-dc06a498f9fc.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/651a7bde-18d3-473e-a3f5-672a90fd53ba.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/4ddc9fdc-eed2-477f-af5f-deaab8aaa87d.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/3895a2de-1f5c-4e43-a79e-d59855b2fc7f.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/180e74f4-50d3-4103-903d-841aeaa669fd.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/bae7fd37-6763-4d90-9e79-907d5e28adf7.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/bec7979b-b4fb-4387-b0ad-f0c542b0c059.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/41b74275-9128-4419-ab44-f5d56eab6a35.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/305d0688-b3c4-4e61-8ae1-eb21ced42856.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/60e475b6-f2ef-4cd8-adc7-348fe9ce4666.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/cb202fc3-d594-42a8-a58a-d50e2e458050.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/8b02b223-b6c1-4ccb-a279-28c1f9a48ff6.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/c0c9199d-a5ef-4d09-a2b4-fa3dd61e7d5d.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/ed45d9ba-0e70-475f-b50f-0b617776ea3a.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/6af2bb5b-9739-4047-be8b-517533db9b40.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/5d05d2ef-bf3c-484c-8300-930d3549765e.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/bd2c46da-9ead-4adb-8bad-c20c1fbe01b2.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/d7e3d05c-ac94-4e01-a8c3-5d6068f8f91b.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/3916d122-b6e1-4f18-b651-baaf9abcabd3.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/36dd3929-0678-4837-9462-7450d3debc98.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/a4759bc4-c688-4c6e-9538-f08973afba35.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/7ebb7b51-e2b4-4885-9482-5a0fe5d39128.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/5a975ff8-8bd5-4719-92e7-61322f6c2a13.jpeg, https://s3.amazonaws.com/mlsgrid/images/MFR721293347/f7cd940e-f818-4c0f-b579-5b1a421d6d6b.jpeg\"},\"MFR_MaxPetWeight\":{\"S\":\"20\"},\"MFR_ClosePriceByCalculatedListPriceRatio\":{\"S\":\"0.91\"},\"ListingAgreement\":{\"S\":\"Exclusive Right To Sell\"},\"SpecialListingConditions\":{\"L\":[{\"S\":\"None\"}]},\"MFR_YrsOfOwnerPriorToLeasingReqYN\":{\"S\":\"0\"},\"MFR_AmenitiesAdditionalFees\":{\"S\":\"Golf course has an additional fee - Buyer must confirm with First Service Residential Services (Property Management) 813-642-8790\"},\"LivingAreaUnits\":{\"S\":\"Square Feet\"},\"OriginatingSystemKey\":{\"S\":\"721293347\"},\"MFR_BuildingNameNumber\":{\"S\":\"2501\"},\"Country\":{\"S\":\"US\"},\"ListAgentAOR\":{\"S\":\"Tampa\"},\"MLSAreaMajor\":{\"S\":\"33573 - Sun City Center / Ruskin\"},\"TransactionBrokerCompensation\":{\"S\":\"2.75%\"},\"PhotosChangeTimestamp\":{\"S\":\"2024-04-02T10:56:08.526Z\"},\"MFR_PreviousStatus\":{\"S\":\"Pending\"},\"MFR_ListOfficeContactPreferred\":{\"S\":\"813-756-1111\"},\"MFR_Association2YN\":{\"S\":\"0\"},\"BuyerOfficeMlsId\":{\"S\":\"MFR771620\"},\"ListAgentDirectPhone\":{\"S\":\"813-767-7789\"},\"MFR_RATIO_ClosePrice_By_ListPrice\":{\"S\":\"0.91405\"},\"ListAgentFullName\":{\"S\":\"Kelli Mullen\"},\"MFR_EscrowState\":{\"S\":\"FL\"},\"ListOfficeKey\":{\"S\":\"MFR508073410\"},\"AssociationFeeIncludes\":{\"L\":[{\"S\":\"Guard - 24 Hour\"},{\"S\":\"Cable TV\"},{\"S\":\"Common Area Taxes\"},{\"S\":\"Pool\"},{\"S\":\"Escrow Reserves Fund\"},{\"S\":\"Insurance\"},{\"S\":\"Internet\"},{\"S\":\"Maintenance Structure\"},{\"S\":\"Maintenance Grounds\"},{\"S\":\"Pest Control\"},{\"S\":\"Recreational Facilities\"},{\"S\":\"Security\"},{\"S\":\"Sewer\"},{\"S\":\"Trash\"},{\"S\":\"Water\"}]},\"CoListAgentMlsId\":{\"S\":\"MFR260043720\"},\"TaxBookNumber\":{\"S\":\"12-42\"},\"Levels\":{\"L\":[{\"S\":\"One\"}]},\"Appliances\":{\"L\":[{\"S\":\"Dishwasher\"},{\"S\":\"Disposal\"},{\"S\":\"Dryer\"},{\"S\":\"Electric Water Heater\"},{\"S\":\"Exhaust Fan\"},{\"S\":\"Microwave\"},{\"S\":\"Range\"},{\"S\":\"Refrigerator\"},{\"S\":\"Washer\"}]},\"SeniorCommunityYN\":{\"BOOL\":true},\"BuyerAgencyCompensation\":{\"S\":\"2.75%\"},\"CoListAgentFullName\":{\"S\":\"Kristin Leon\"},\"GarageYN\":{\"BOOL\":true},\"PostalCodePlus4\":{\"S\":\"6541\"},\"UnparsedAddress\":{\"S\":\"2501 LONIGAN PL\"},\"Directions\":{\"S\":\"I 75 south to Sun City Center Blvd exit 240A. travel East to Kings Blvd and turn right into Kings Point Gated Community. Head South to Locksley St. (apprx 2 miles) and turn right. Go to the second Lonigan Pl (apprx .2 miles) and home is located on corner of Locksley and Lonigan Pl.\\r\\n\\r\\nKings Pointe is a gated community. Agents please have card and license (photo) for the gate.\"},\"MFR_LotSizeSquareMeters\":{\"S\":\"193\"},\"MFR_AttributionContact\":{\"S\":\"813-756-1111\"},\"MFR_DaysToClosed\":{\"S\":\"72\"},\"ConstructionMaterials\":{\"L\":[{\"S\":\"Stucco\"}]},\"GarageSpaces\":{\"N\":\"2\"},\"PatioAndPorchFeatures\":{\"L\":[{\"S\":\"Deck\"},{\"S\":\"Patio\"},{\"S\":\"Porch\"}]},\"ListAOR\":{\"S\":\"Tampa\"},\"ListingKey\":{\"S\":\"MFR721293347\"},\"MFR_ApprovalProcess\":{\"S\":\"HOA Approval is required. Buyer pays $150 Federation of Kings Point registration fee at closing, and Lancaster III $150 transfer fee along with the application form at the First Service Residential office at least 10 days prior to closing.\"},\"Ownership\":{\"S\":\"Fee Simple\"},\"MFR_AssociationFeeRequirement\":{\"S\":\"Required\"},\"MFR_PropertyDescription\":{\"S\":\"Corner Unit\"},\"MFR_RealtorInfo\":{\"S\":\"Assoc approval required\"},\"YearBuilt\":{\"N\":\"1989\"},\"TaxLot\":{\"S\":\"002940\"},\"StandardStatus\":{\"S\":\"Closed\"},\"MFR_GreenVerificationCount\":{\"S\":\"0\"},\"MFR_TotalMonthlyFees\":{\"S\":\"737.00\"},\"BuildingAreaUnits\":{\"S\":\"Square Feet\"},\"id\":{\"S\":\"MFR721293347\"},\"UniversalPropertyId\":{\"S\":\"US-12057-N-1432191000000002940-R-N\"},\"AdditionalParcelsYN\":{\"BOOL\":false},\"MlgCanV... (7451 more characters)"
+        }
+      },
+      "id": 66,
+      "thread_id": 0,
+      "parent_id": 18,
+      "elapsed": 0.4099211669526994
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 500,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Etag": "\"9vq5xnk0va17\"",
+          "Content-Length": "43",
+          "Vary": "Accept-Encoding"
+        },
+        "return_value": {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "error",
+              "class": "String"
+            }
+          ],
+          "value": "{ error: 'Failed to fetch closed listings' }",
+          "object_id": 58
+        }
+      },
+      "id": 67,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.43724949983879924
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 33
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 21
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 15
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 13
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 10
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.23.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v20.9.0"
+    },
+    "app": "fab",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "GET /api/sold-route (500) — 2024-07-08T00:59:51.808Z"
+  },
+  "classMap": [
+    {
+      "name": "api",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "sold-route",
+          "children": [
+            {
+              "type": "function",
+              "name": "handler",
+              "static": true,
+              "location": "pages/api/sold-route.js:107"
+            },
+            {
+              "type": "function",
+              "name": "fetchClosedListings",
+              "static": true,
+              "location": "pages/api/sold-route.js:12"
+            },
+            {
+              "type": "function",
+              "name": "fetchByListAgent",
+              "static": true,
+              "location": "pages/api/sold-route.js:26"
+            },
+            {
+              "type": "function",
+              "name": "fetchByCoListAgent",
+              "static": true,
+              "location": "pages/api/sold-route.js:54"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /api/sold-route"
+        }
+      ]
+    },
+    {
+      "type": "external-service",
+      "name": "dynamodb.us-east-1.amazonaws.com",
+      "children": [
+        {
+          "type": "external-route",
+          "name": "POST https://dynamodb.us-east-1.amazonaws.com/"
+        }
+      ]
+    }
+  ]
+}

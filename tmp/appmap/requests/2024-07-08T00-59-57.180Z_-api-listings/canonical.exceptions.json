@@ -1,0 +1,19 @@
+[
+  {
+    "class": "Error",
+    "message": "Error fetching data from DynamoDB",
+    "stack": [
+      "pages/api/listings.js:11",
+      "pages/api/listings.js:87"
+    ]
+  },
+  {
+    "class": "SyntaxError",
+    "message": "Unexpected token '.', \".jpeg, htt\"... is not valid JSON\n  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.",
+    "stack": [
+      "pages/api/listings.js:28",
+      "pages/api/listings.js:11",
+      "pages/api/listings.js:87"
+    ]
+  }
+]
