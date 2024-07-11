@@ -108,6 +108,7 @@ const ListingsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl mb-6 text-center text-slate-600 mt-4 font-fourth">Sold Listings</h1>
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {Array(6).fill(0).map((_, index) => (
